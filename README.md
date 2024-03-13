@@ -1,10 +1,12 @@
 # Liga Pro Analytics
 ### Reporte de Partido
-![reporte](./images/match_report.png)
+
+<img src="./images/match_report.png" alt="Reporte" width="375"/>
+
 
 ### Top 10 jugadores con mas disparos
-![tabla1](./images/total_passes.png)
+<img src="./images/total_passes.png" alt="Pases" width="400"/>
+
 
 ### Top 10 jugadores con mas pases completados
-
-![tabla2](./images/total_shots.png)
+<img src="./images/total_shots.png" alt="Tiros" width="400"/>
