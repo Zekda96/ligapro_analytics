@@ -12,6 +12,10 @@ import matplotlib.pyplot as plt
 
 from matplotlib.colors import LinearSegmentedColormap
 
+from mplsoccer import Pitch
+
+import math
+
 
 
 
@@ -19,7 +23,7 @@ def read_db():
     """
     Load data
     """
-    fp = './data/ligapro_2024_lineups.csv'
+    fp = os.path.join('data', 'ligapro_2024_lineups.csv')
     with open(fp, 'r') as f:
         df = pd.read_csv(f)
 
@@ -55,16 +59,23 @@ def team_name_to_path(fn):
     return fp
 
 
-def order_data(df, match_teams, team):
-   
-    select = ['player',
-            'team',
-            'minutesPlayed',
-            'totalPass',
-            'accuratePass',
-            'TotalShots',
-            'ShotOnTarget'
+def order_data(df, match_teams, team, stat_type):
+    select = [
+        'player', 'team', 'minutesPlayed'
     ]
+
+    if stat_type == 'pass':
+        select.append('totalPass')
+        select.append('accuratePass')
+
+        order_by = 'totalPass'
+
+
+    elif stat_type == 'shot':
+        select.append('TotalShots')
+        select.append('ShotOnTarget')
+
+        order_by = 'TotalShots'
 
     home = match_teams[0]
     away = match_teams[1]
@@ -76,45 +87,90 @@ def order_data(df, match_teams, team):
         & (df['team'] == team)
         )
 
-    
-    # group_by = ['team','player']
-    order_by = 'totalPass'
     limit = 16
-
-    if order_by not in select:
-        select.append(order_by)
-
 
     df = df[where]
     df = df[select]
-    # df = df.groupby(group_by).sum()
     df = df.sort_values(order_by, ascending=False, ignore_index=True)
     df = df.iloc[:limit, :]
 
-    # Move team to another col for final table aesthetics
-    df.insert(1, 'team', df.pop('team'))
-    # Start index from 1 so it is a ranking on the table (1-10)
+    # Start index from 1 so it is a ranking on the table (1-16)
     df.index += 1
 
     # Add percentages
-    # - Pass Accuracy
-    pass_accuracy = (df['accuratePass'] / df['totalPass'])
-    df.insert(5, 'PassAccuracy', pass_accuracy)
-
-    # - Shot on Target %
-    shot_on_target = (df['ShotOnTarget'] / df['TotalShots'])
-    df.insert(len(df.columns), 'SoT_percent', shot_on_target)
+    if stat_type == 'pass':
+        # Pass Accuracy
+        pass_accuracy = (df['accuratePass'] / df['totalPass'])
+        df.insert(5, 'PassAccuracy', pass_accuracy)
+    elif stat_type == 'shot':
+        # Shot on Target %
+        shot_on_target = (df['ShotOnTarget'] / df['TotalShots'])
+        df.insert(len(df.columns), 'SoT_percent', shot_on_target)
 
     # Replace NaNs with 0
     df = df.fillna(0)
 
-    # Change team names to logo images filepaths for plottable
-    df['team'] = df['team'].apply(team_name_to_path)
+    df = df.drop(['team'], axis=1)
 
     return df
 
 
-def col_defs_highlight_pass():
+def add_labels(fig, home_team, away_team):
+
+    teams = {'liga': 'LDU',
+         'emelec': 'Emelec',
+         'barcelona': 'Barcelona',
+         'delfin': 'Delfin',
+         'catolica': 'U. Catolica',
+         'nacional': 'El Nacional',
+         'macara': 'Macara',
+         'imbabura': 'Imbabura',
+         'cuenca': 'D. Cuenca',
+         'aucas': 'Aucas',
+         'independiente': 'IDV',
+         'mushuc-runa': 'Mushuc Runa',
+         'orense': 'Orense',
+         'cumbaya': 'Cumbaya',
+         'libertad': 'Libertad',
+         'tecnico': 'Tecnico U.'
+         }
+    
+    # ------------------- Labels
+    ax_title.text(x=0.5, y=0.9,
+                s=f'{teams[home_team]} vs. {teams[away_team]}',
+                  size=40,
+                  ha='center',
+                  va='top'
+                  )
+    
+    ax_title.text(x=0.5, y=0.5,
+                s=f'Reporte de Partido - Liga Pro 2024',
+                size=25,
+                ha='center',
+                va='top'
+                )
+
+
+def add_pitch_stats(ax):
+    stats = [
+        'Goles',
+        'Posesion',
+        'Tiros',
+        'Al Arco',
+        'Pases',
+    ]
+
+    dist = 8
+    n = len(stats) - 1
+    border = (80 - n*dist)/2
+
+    tags_size = 14
+    for i, stat in enumerate(stats): 
+        ax.text(x=60, y=(border + dist*i), s=stat, size=tags_size, ha='center', va='center')
+
+
+
+def get_col_defs(stat_type):
        
     cmap_test = LinearSegmentedColormap.from_list(
         # name="bugw", colors=["#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"], N=256
@@ -144,22 +200,17 @@ def col_defs_highlight_pass():
             title='',
             width=1.8,
             ),
-            
-        ColumnDefinition(
-            name='team',
-            title='',
-            plot_fn=image,
-            width=1,
-            ),
 
         ColumnDefinition(
             name='minutesPlayed',
             title='Minutos',
             formatter="{:.0f}",
             width=data_width,
-            # border='left',
-            ),
+            )
+        ]
 
+    if stat_type == 'pass':
+        stats_col_defs = [
         ColumnDefinition(
             name='totalPass',
             title='Total',
@@ -167,7 +218,6 @@ def col_defs_highlight_pass():
             group="Pases",
             width=data_width,
             cmap=cmap1,
-            # border='left',
             ),  
 
         ColumnDefinition(
@@ -176,7 +226,6 @@ def col_defs_highlight_pass():
             formatter="{:.0f}",
             group="Pases",
             width=data_width,
-            # border='left',
             ),
 
         ColumnDefinition(
@@ -187,18 +236,19 @@ def col_defs_highlight_pass():
             cmap=cmap_test,
             width=percent_width,            
             textprops= {"bbox": {"boxstyle": "circle", "pad": 0.05}},
-            # border='left',
-            ),    
+            ) 
+        ] 
 
-
+            
+    elif stat_type == 'shot':
+        stats_col_defs = [
             ColumnDefinition(
                 name='TotalShots',
                 title='Total',
                 formatter="{:.0f}",
                 group="Disparos",
                 width=data_width,
-                # cmap=cmap1,
-                # border='left',
+                cmap=cmap1,
                 ),
 
             ColumnDefinition(
@@ -207,7 +257,6 @@ def col_defs_highlight_pass():
                 formatter="{:.0f}",
                 group="Disparos",
                 width=data_width,
-                # border='left',
                 ),
 
             ColumnDefinition(
@@ -218,9 +267,12 @@ def col_defs_highlight_pass():
                 cmap=cmap_test,
                 textprops= {"bbox": {"boxstyle": "circle", "pad": 0.05}},
                 width=percent_width,
-                ),   
+                )
         ]
-       
+
+    for stat in stats_col_defs:
+        col_defs.append(stat)
+
     return col_defs
 
 if __name__ == "__main__":
@@ -231,34 +283,87 @@ if __name__ == "__main__":
 
     match = [home, away]
 
-    df_home = order_data(df, match, home)
-    df_away = order_data(df, match, away)
+    df_home_pass = order_data(df, match, home, 'pass')
+    df_away_pass = order_data(df, match, away, 'pass')
 
-    # Table
-    fig, axs = plt.subplots(nrows=2, ncols=1, figsize=(11, 13))
-    ax_home = axs[0]
-    ax_away = axs[1]
-    
+    df_home_shot = order_data(df, match, home, 'shot')
+    df_away_shot = order_data(df, match, away, 'shot')
+
+
+    # --------------------------------------- Figure
     bg_color = '#faf9f4'
-    fig.set_facecolor(bg_color)
-    ax_home.set_facecolor('white')
+    size = 12
+    fig = plt.figure(layout='constrained', figsize=(size, size * math.sqrt(2)), dpi=250)
+    fig.patch.set_facecolor(bg_color)
 
-    # Home table
-    col_defs = col_defs_highlight_pass()
-    tab_home = Table(df_home,
+    subfigs = fig.subfigures(4, 1,
+                         wspace=0.01,
+                         hspace=0.01,
+                         height_ratios=[0.1, 0.3 , 0.6, 0.05]
+                         )
+
+    ax_title = subfigs[0].subplots(1, 1)
+    ax_title.axis('off')
+
+    ax_pitch = subfigs[1].subplots(1, 1)
+    axs_tables = subfigs[2].subplots(2,2)
+
+    ax_annotate = subfigs[3].subplots(1, 1)
+    ax_annotate.axis('off')
+
+
+
+    axs_home = axs_tables[0]
+    axs_away = axs_tables[1]
+
+    # --------------------------------------- Add Pitch
+    pitch = Pitch()
+    pitch.draw(ax=ax_pitch)
+
+    # --------------------------------------- Add Tables
+    # ------------------ Passes
+
+    # Home
+    col_defs = get_col_defs('pass')
+    tab_home = Table(df_home_pass,
                      column_definitions=col_defs,
-                     ax=ax_home,
+                     ax=axs_home[0],
                      textprops={"ha": "center"},
                      # cell_kw={'facecolor': 'red'}
                      )
     
-    col_defs = col_defs_highlight_pass()
-    tab_away = Table(df_away,
+    # Away
+    tab_away = Table(df_away_pass,
                      column_definitions=col_defs,
-                     ax=ax_away,
+                     ax=axs_away[0],
                      textprops={"ha": "center"},
                      # cell_kw={'facecolor': 'red'}
                      )
-            
 
-    fig.savefig(f"images/match_report.png", dpi=600)
+    # ------------------ Passes
+
+    # Home
+    col_defs = get_col_defs('shot')
+    tab_home = Table(df_home_shot,
+                     column_definitions=col_defs,
+                     ax=axs_home[1],
+                     textprops={"ha": "center"},
+                     # cell_kw={'facecolor': 'red'}
+                     )
+    
+    # # Away
+    tab_away = Table(df_away_shot,
+                     column_definitions=col_defs,
+                     ax=axs_away[1],
+                     textprops={"ha": "center"},
+                     # cell_kw={'facecolor': 'red'}
+                     )
+
+    add_pitch_stats(ax_pitch)             
+
+
+    add_labels(fig, home, away)
+
+    fig.savefig(f"images/match_report.png",
+                # bbox_inches='tight',
+                dpi=250)
