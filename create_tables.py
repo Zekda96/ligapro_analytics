@@ -43,7 +43,7 @@ def team_name_to_path(fn):
         'libertad': 'lb',
         'liga': 'ldu',
         'macara': 'ma',
-        'mushuc-runa': 'mu',
+        'mushuc-runa': 'mr',
         'nacional': 'na',
         'orense': 'or',
         'catolica': 'uc',
@@ -139,7 +139,7 @@ def plot_table(df, stat_type, output_fn):
     elif stat_type=='pass':
         fig.suptitle('Top 10 Jugadores con más pases', fontsize=17)
 
-    ax.set_title('LigaPro 2024 - 2 Fechas', fontsize=15)
+    ax.set_title('LigaPro 2024 - 3 Fechas', fontsize=15)
 
     # -- Transformation functions (thanks Son of a corner)
     DC_to_FC = ax_title.transData.transform
