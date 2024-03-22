@@ -1,3 +1,8 @@
+"""
+This script reads through all 'lineups' files and creates a single
+file with all teams' stats
+"""
+
 import os
 import json
 import pandas as pd
