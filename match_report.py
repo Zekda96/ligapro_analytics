@@ -278,8 +278,8 @@ def get_col_defs(stat_type):
 if __name__ == "__main__":
     df = read_db()
 
-    home = 'imbabura'
-    away = 'delfin'
+    home = 'aucas'
+    away = 'nacional'
 
     match = [home, away]
 
@@ -313,8 +313,8 @@ if __name__ == "__main__":
 
 
 
-    axs_home = axs_tables[0]
-    axs_away = axs_tables[1]
+    axs_home = [axs_tables[0][0], axs_tables[1][0]]
+    axs_away = [axs_tables[0][1], axs_tables[1][1]]
 
     # --------------------------------------- Add Pitch
     pitch = Pitch()
