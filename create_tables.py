@@ -18,9 +18,9 @@ def read_db():
     Load data
     """
     fp = './data/ligapro_2024_lineups.csv'
-    with open(fp, 'r') as f:
-        df = pd.read_csv(f)
-    return df
+    with open(fp, 'r', encoding="utf8") as f:
+        dataframe = pd.read_csv(f)
+    return dataframe
 
 
 def team_name_to_path(fn):
@@ -52,10 +52,13 @@ def team_name_to_path(fn):
     fp = os.path.join(img_path, f'{teams[fn]}.png')
     return fp
 
+
 def order_data(df, stat_type):
     select = [
-        'player', 'team', 'minutesPlayed'
+        'player', 'team', 'minutesPlayed', 'matchweek'
     ]
+
+
 
     if stat_type == 'totalPass':
         select.append('totalPass')
@@ -69,17 +72,21 @@ def order_data(df, stat_type):
         select.append('ShotOnTarget')
         select.append('goals')
 
-
         order_by = 'TotalShots'
 
-    group_by = ['team','player']
+    group_by = ['team', 'player']
     limit = 10
 
-    if order_by not in select:
-        select.append(order_by)
-
     df = df[select]
-    df = df.groupby(group_by).sum()
+
+    # List of stats columns excluding those to exclude
+    stats_columns = [col for col in df.columns if col not in ['player', 'team', 'matchweek']]
+
+    # Construct aggregation dictionary
+    agg_dict = {col: 'sum' for col in stats_columns}
+    agg_dict['matchweek'] = 'max'
+
+    df = df.groupby(group_by).agg(agg_dict)
     df = df.sort_values(order_by, ascending=False)
     df = df.iloc[:limit, :]
 
@@ -87,7 +94,7 @@ def order_data(df, stat_type):
     df = df.reset_index()
     # Move team to another col for final table aesthetics
     df.insert(1, 'team', df.pop('team'))
-    # Start index from 1 so it is a ranking on the table (1-10)
+    # Start index from 1, so it is a ranking on the table (1-10)
     df.index += 1
 
     # Add percentages
@@ -110,6 +117,7 @@ def order_data(df, stat_type):
 
     return df
 
+
 def plot_table(df, stat_type, output_fn):
 
     # --------------------------------------- Figure
@@ -126,6 +134,13 @@ def plot_table(df, stat_type, output_fn):
 
     col_defs = get_col_defs(stat_type)
 
+    mw = df['matchweek'].max()
+
+    # Exclude matchweek column from table
+
+    exclude = ['matchweek']
+    df = (df.loc[:, df.columns != 'matchweek'])
+
     tab = Table(df,
                 ax=ax,
                 column_definitions=col_defs,
@@ -139,7 +154,8 @@ def plot_table(df, stat_type, output_fn):
     elif stat_type=='pass':
         fig.suptitle('Top 10 Jugadores con más pases', fontsize=17)
 
-    ax.set_title('LigaPro 2024 - 3 Fechas', fontsize=15)
+
+    ax.set_title(f'LigaPro 2024 - {mw} Fechas', fontsize=15)
 
     # -- Transformation functions (thanks Son of a corner)
     DC_to_FC = ax_title.transData.transform
@@ -288,6 +304,7 @@ def get_col_defs(stat_type):
         col_defs.append(stat)
 
     return col_defs    
+
 
 if __name__ == "__main__":
 
