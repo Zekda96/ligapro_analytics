@@ -35,37 +35,38 @@ match_files = []
 data = []
 # Loop through folders
 for week in matchweek_folders:
-  match_files = os.listdir(os.path.join(base_dir, week))
+    match_files = os.listdir(os.path.join(base_dir, week))
 
-  # Loop through files
-  for file in match_files:
-    if file[-12:] == 'lineups.json':
-        matchname = file[:-13]
-        home, away = matchname.split('_')
-        filepath = os.path.join(base_dir, week, file)
+    # Loop through files
+    for file in match_files:
+        if file[-12:] == 'lineups.json':
+            matchname = file[:-13]
+            home, away = matchname.split('_')
+            filepath = os.path.join(base_dir, week, file)
 
-        # Read file and get json data
-        with open(filepath, 'r') as f:
-            players_data = json.load(f)
+            # Read file and get json data
+            with open(filepath, 'r') as f:
+                players_data = json.load(f)
 
-        team_names = [home, away]
-        # team_names = [teams[home], teams[away]]
+            team_names = [home, away]
+            # team_names = [teams[home], teams[away]]
 
-        home_players = players_data['home']['players']
-        away_players = players_data['away']['players']
+            home_players = players_data['home']['players']
+            away_players = players_data['away']['players']
 
-        for i, team in enumerate([home_players, away_players]):
+            for i, team in enumerate([home_players, away_players]):
 
-            is_home = True if i==0 else False
+                is_home = True if i==0 else False
 
-            for player in team:
-                stats = player['statistics']
-                stats['player'] = player['player']['name']
-                stats['team'] = team_names[0] if is_home else team_names[1]
-                stats['home'] = team_names[0]
-                stats['away'] = team_names[1]
+                for player in team:
+                    stats = player['statistics']
+                    stats['player'] = player['player']['name']
+                    stats['team'] = team_names[0] if is_home else team_names[1]
+                    stats['home'] = team_names[0]
+                    stats['away'] = team_names[1]
+                    stats['matchweek'] = week[-1]
 
-                data.append(stats)
+                    data.append(stats)
 
 
 df = pd.DataFrame(data)
