@@ -17,17 +17,16 @@ from mplsoccer import Pitch
 import math
 
 
-
-
-def read_db():
+def read_db(file):
     """
     Load data
     """
-    fp = os.path.join('data', 'ligapro_2024_lineups.csv')
-    with open(fp, 'r') as f:
+    fp = os.path.join('data', file)
+    with open(fp, 'r', encoding="utf8") as f:
         df = pd.read_csv(f)
 
     return df
+
 
 def team_name_to_path(fn):
     """
@@ -151,8 +150,9 @@ def add_labels(fig, home_team, away_team):
                 )
 
 
-def add_pitch_stats(ax):
-    stats = [
+def add_pitch_stats(ax, df, stats):
+
+    stat_names = [
         'Goles',
         'Posesion',
         'Tiros',
@@ -161,13 +161,23 @@ def add_pitch_stats(ax):
     ]
 
     dist = 8
-    n = len(stats) - 1
+    n = len(stat_names) - 1
     border = (80 - n*dist)/2
 
+    data_diff = 16
+
     tags_size = 14
-    for i, stat in enumerate(stats): 
+    for i, stat in enumerate(stat_names):
         ax.text(x=60, y=(border + dist*i), s=stat, size=tags_size, ha='center', va='center')
 
+    # Home
+    ax.text(x=60-data_diff, y=(border + dist*1), s=f'{df["home"][stats[0]]}%',
+            size=tags_size, ha='center', va='center'
+            )
+    # Away
+    ax.text(x=60+data_diff, y=(border + dist*1), s=f'{df["away"][stats[0]]}%',
+            size=tags_size, ha='center', va='center'
+            )
 
 
 def get_col_defs(stat_type):
@@ -275,8 +285,9 @@ def get_col_defs(stat_type):
 
     return col_defs
 
+
 if __name__ == "__main__":
-    df = read_db()
+    df = read_db('ligapro_2024_lineups.csv', )
 
     home = 'aucas'
     away = 'nacional'
@@ -288,7 +299,6 @@ if __name__ == "__main__":
 
     df_home_shot = order_data(df, match, home, 'shot')
     df_away_shot = order_data(df, match, away, 'shot')
-
 
     # --------------------------------------- Figure
     bg_color = '#faf9f4'
@@ -310,8 +320,6 @@ if __name__ == "__main__":
 
     ax_annotate = subfigs[3].subplots(1, 1)
     ax_annotate.axis('off')
-
-
 
     axs_home = [axs_tables[0][0], axs_tables[1][0]]
     axs_away = [axs_tables[0][1], axs_tables[1][1]]
@@ -358,11 +366,27 @@ if __name__ == "__main__":
                      textprops={"ha": "center"},
                      # cell_kw={'facecolor': 'red'}
                      )
-
-    add_pitch_stats(ax_pitch)             
-
-
     add_labels(fig, home, away)
+
+    # --------------------- Add team statistics
+    df = read_db('ligapro_2024_statistics.csv')
+
+    def get_team_stats(df: pd.DataFrame, stats: list, home, away):
+        df = df[(df['home'] == home) & (df['away'] == away)]
+        data = {'home': {},
+                'away': {}}
+
+        for stat in stats:
+            data['home'][stat] = df[stat].iloc[0]
+            print(df[stat].iloc[0])
+            data['away'][stat] = df[stat].iloc[1]
+
+        return data
+
+    stats = ['ball_possession']
+    df_stats = get_team_stats(df, stats, home, away)
+
+    add_pitch_stats(ax_pitch, df_stats, stats)
 
     fig.savefig(f"images/match_report.png",
                 # bbox_inches='tight',
