@@ -150,16 +150,57 @@ def add_labels(fig, home_team, away_team):
                 )
 
 
-def add_pitch_stats(ax, df, stats):
+def get_team_stats(df: pd.DataFrame, stats: dict, home, away):
+    df = df[(df['home'] == home) & (df['away'] == away)]
+    data = {'home': {},
+            'away': {}}
 
-    stat_names = [
-        'Goles',
-        'Posesion',
-        'Tiros',
-        'Al Arco',
-        'Pases',
-    ]
+    for stat in stats.values():
+        if type(stat) == list:
+            data['home']['goals'] = stat[0]
+            data['away']['goals'] = stat[1]
+        else:
+            data['home'][stat] = df[stat].iloc[0]
+            data['away'][stat] = df[stat].iloc[1]
 
+    data = pd.DataFrame(data).transpose()
+    return data
+
+
+def get_goals(df, home: str, away: str):
+    df = df[df['shot_type'] == 'goal']
+    df = df[(df['home'] == home) & (df['away'] == away)]
+    home_goals = len(df[df['team'] == home])
+    away_goals = len(df[df['team'] == away])
+
+    return [home_goals, away_goals]
+
+
+def add_pitch_stats(ax, home_team: str, away_team: str):
+    """
+    Func to add team stats on pitch.
+    :param ax: Axis containing pitch.
+    :param home_team: Name of home team.
+    :param away_team: Name of away team
+    :return:
+    """
+
+    df_stats = read_db('ligapro_2024_statistics.csv')
+    goals = get_goals(read_db('ligapro_2024_shots.csv'), home_team, away_team)
+
+    # Stats to show on pitch. Display name and col name on df
+    stats = {
+        'Goles': goals,
+        'Posesion': 'ball_possession',
+        'Tiros': 'total_shots',
+        'Al Arco': 'shots_on_target',
+        'Pases': 'passes_completed'
+    }
+
+    df = get_team_stats(df_stats, stats, home_team, away_team)
+
+    # Name to display of each stat
+    stat_names = list(stats.keys())
     dist = 8
     n = len(stat_names) - 1
     border = (80 - n*dist)/2
@@ -167,17 +208,32 @@ def add_pitch_stats(ax, df, stats):
     data_diff = 16
 
     tags_size = 14
-    for i, stat in enumerate(stat_names):
-        ax.text(x=60, y=(border + dist*i), s=stat, size=tags_size, ha='center', va='center')
+    for i, stat in enumerate(df.columns):
+        # Write stat name
+        ax.text(x=60, y=(border + dist*i),
+                s=stat_names[i],
+                size=tags_size,
+                ha='center', va='center')
 
-    # Home
-    ax.text(x=60-data_diff, y=(border + dist*1), s=f'{df["home"][stats[0]]}%',
-            size=tags_size, ha='center', va='center'
-            )
-    # Away
-    ax.text(x=60+data_diff, y=(border + dist*1), s=f'{df["away"][stats[0]]}%',
-            size=tags_size, ha='center', va='center'
-            )
+        # Add Home value
+        text = f"{df[stat]['home']}"
+        # Add '%' for possession stat
+        text = text + '%' if stat == 'ball_possession' else text
+        ax.text(x=60-data_diff, y=(border + dist*i),
+                s=text,
+                size=tags_size,
+                ha='center', va='center'
+                )
+        # Add Away value
+        text = f"{df[stat]['away']}"
+        # Add '%' for possession stat
+        text = text + '%' if stat == 'ball_possession' else text
+
+        ax.text(x=60+data_diff, y=(border + dist*i),
+                s=text,
+                size=tags_size,
+                ha='center', va='center'
+                )
 
 
 def get_col_defs(stat_type):
@@ -286,6 +342,46 @@ def get_col_defs(stat_type):
     return col_defs
 
 
+def add_tables(dfs: dict, axs: dict):
+    # ------------------ Passes
+
+    col_defs = get_col_defs('pass')
+    # Home
+    tab_home = Table(dfs['pass']['home'],
+                     column_definitions=col_defs,
+                     ax=axs['home'][0],
+                     textprops={"ha": "center"},
+                     # cell_kw={'facecolor': 'red'}
+                     )
+
+    # Away
+    tab_away = Table(dfs['pass']['away'],
+                     column_definitions=col_defs,
+                     ax=axs['away'][0],
+                     textprops={"ha": "center"},
+                     # cell_kw={'facecolor': 'red'}
+                     )
+
+    # ------------------ Shots
+
+    col_defs = get_col_defs('shot')
+    # Home
+    tab_home = Table(dfs['shot']['home'],
+                     column_definitions=col_defs,
+                     ax=axs['home'][1],
+                     textprops={"ha": "center"},
+                     # cell_kw={'facecolor': 'red'}
+                     )
+
+    # # Away
+    tab_away = Table(dfs['shot']['away'],
+                     column_definitions=col_defs,
+                     ax=axs['away'][1],
+                     textprops={"ha": "center"},
+                     # cell_kw={'facecolor': 'red'}
+                     )
+
+
 if __name__ == "__main__":
     df = read_db('ligapro_2024_lineups.csv', )
 
@@ -294,11 +390,13 @@ if __name__ == "__main__":
 
     match = [home, away]
 
-    df_home_pass = order_data(df, match, home, 'pass')
-    df_away_pass = order_data(df, match, away, 'pass')
-
-    df_home_shot = order_data(df, match, home, 'shot')
-    df_away_shot = order_data(df, match, away, 'shot')
+    tables_dfs = {'pass': {'home': order_data(df, match, home, 'pass'),
+                           'away': order_data(df, match, away, 'pass')
+                           },
+                  'shot': {'home': order_data(df, match, home, 'shot'),
+                           'away': order_data(df, match, away, 'shot')
+                           }
+                  }
 
     # --------------------------------------- Figure
     bg_color = '#faf9f4'
@@ -328,65 +426,13 @@ if __name__ == "__main__":
     pitch = Pitch()
     pitch.draw(ax=ax_pitch)
 
-    # --------------------------------------- Add Tables
-    # ------------------ Passes
+    # --------------------- Add team statistics to Pitch
+    add_pitch_stats(ax_pitch, home, away)
 
-    # Home
-    col_defs = get_col_defs('pass')
-    tab_home = Table(df_home_pass,
-                     column_definitions=col_defs,
-                     ax=axs_home[0],
-                     textprops={"ha": "center"},
-                     # cell_kw={'facecolor': 'red'}
-                     )
-    
-    # Away
-    tab_away = Table(df_away_pass,
-                     column_definitions=col_defs,
-                     ax=axs_away[0],
-                     textprops={"ha": "center"},
-                     # cell_kw={'facecolor': 'red'}
-                     )
+    # ---------------------- Add Tables with player data
+    add_tables(tables_dfs, {'home': axs_home, 'away': axs_away})
 
-    # ------------------ Passes
-
-    # Home
-    col_defs = get_col_defs('shot')
-    tab_home = Table(df_home_shot,
-                     column_definitions=col_defs,
-                     ax=axs_home[1],
-                     textprops={"ha": "center"},
-                     # cell_kw={'facecolor': 'red'}
-                     )
-    
-    # # Away
-    tab_away = Table(df_away_shot,
-                     column_definitions=col_defs,
-                     ax=axs_away[1],
-                     textprops={"ha": "center"},
-                     # cell_kw={'facecolor': 'red'}
-                     )
     add_labels(fig, home, away)
-
-    # --------------------- Add team statistics
-    df = read_db('ligapro_2024_statistics.csv')
-
-    def get_team_stats(df: pd.DataFrame, stats: list, home, away):
-        df = df[(df['home'] == home) & (df['away'] == away)]
-        data = {'home': {},
-                'away': {}}
-
-        for stat in stats:
-            data['home'][stat] = df[stat].iloc[0]
-            print(df[stat].iloc[0])
-            data['away'][stat] = df[stat].iloc[1]
-
-        return data
-
-    stats = ['ball_possession']
-    df_stats = get_team_stats(df, stats, home, away)
-
-    add_pitch_stats(ax_pitch, df_stats, stats)
 
     fig.savefig(f"images/match_report.png",
                 # bbox_inches='tight',
