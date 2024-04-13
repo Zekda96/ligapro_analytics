@@ -29,7 +29,7 @@ import pandas as pd
 base_dir = './data/matches'
 matchweek_dirs = os.listdir(base_dir)
 # Select only directories
-matchweek_folders = [x for x in matchweek_dirs if os.path.isdir(os.path.join(base_dir,x))]
+matchweek_folders = [x for x in matchweek_dirs if os.path.isdir(os.path.join(base_dir, x))]
 
 match_files = []
 data = []
@@ -56,7 +56,7 @@ for week in matchweek_folders:
 
             for i, team in enumerate([home_players, away_players]):
 
-                is_home = True if i==0 else False
+                is_home = True if i == 0 else False
 
                 for player in team:
                     stats = player['statistics']
@@ -68,22 +68,20 @@ for week in matchweek_folders:
 
                     data.append(stats)
 
-
 df = pd.DataFrame(data)
 df = df.fillna(0)
 
 # Column names
 df = df.rename(
     columns=
-     {
-         'onTargetScoringAttempt': 'ShotOnTarget',
-         'shotOffTarget': 'ShotOffTarget'
-         }
-    )
+    {
+        'onTargetScoringAttempt': 'ShotOnTarget',
+        'shotOffTarget': 'ShotOffTarget'
+    }
+)
 
 # New metrics
 df['TotalShots'] = (df['ShotOffTarget'] + df['ShotOnTarget'])
-
 
 # p90 metrics
 df['accuratePass_p90'] = (df['accuratePass'] / df['minutesPlayed']) * 90
@@ -93,4 +91,4 @@ df['ShotOnTarget_p90'] = (df['ShotOnTarget'] / df['minutesPlayed']) * 90
 # Replace NaNs with 0
 df = df.fillna(0)
 
-df.to_csv(f"{os.path.join('data', 'ligapro_2024_lineups.csv')}")
+df.to_csv(f"{os.path.join('data', 'ligapro_2024_lineups.csv')}", index=False)

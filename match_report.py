@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 from matplotlib.colors import LinearSegmentedColormap
 
-from mplsoccer import Pitch
+from mplsoccer import Pitch, Standardizer
 
 import math
 
@@ -186,13 +186,13 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
     """
 
     df_stats = read_db('ligapro_2024_statistics.csv')
-    goals = get_goals(read_db('ligapro_2024_shots.csv'), home_team, away_team)
+    goals = get_goals(read_db('ligapro_2024_shotmap.csv'), home_team, away_team)
 
     # Stats to show on pitch. Display name and col name on df
     stats = {
         'Goles': goals,
         'Posesion': 'ball_possession',
-        'Tiros': 'total_shots',
+        'Remates': 'total_shots',
         'Al Arco': 'shots_on_target',
         'Pases': 'passes_completed'
     }
@@ -234,6 +234,44 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
                 size=tags_size,
                 ha='center', va='center'
                 )
+
+
+def add_pitch_shots(ax_pitch, ax, home_team, away_team):
+
+    """
+    Func to add team stats on pitch.
+    :param ax: Axis containing pitch.
+    :param home_team: Name of home team.
+    :param away_team: Name of away team
+    :return:
+    """
+    # Standardizer
+    standard = Standardizer(pitch_from='opta', pitch_to='statsbomb')
+    df = read_db('ligapro_2024_shotmap.csv')
+
+    df.rename(columns={'player_coordinates_x': 'x',
+                       'player_coordinates_y': 'y'},
+              inplace=True)
+
+    df = df[(df['home'] == home_team) & (df['away'] == away_team)]
+
+    # Invert away team shot coordinates
+    df.loc[df['team'] == away_team, 'x'] = 100 - df.loc[df['team'] == away_team, 'x']
+    df.loc[df['team'] == away_team, 'y'] = 100 - df.loc[df['team'] == away_team, 'y']
+
+    df.loc[:, 'x'], df.loc[:, 'y'] = standard.transform(df['x'], df['y'])
+
+    mask = df['shot_type'] == 'goal'
+    goals_df, shots_df = df[mask], df[~mask]
+
+    shots = ax_pitch.scatter(shots_df.x, shots_df.y, ax=ax,
+                             facecolor='white',
+                             edgecolor='red')
+
+    goals = ax_pitch.scatter(goals_df.x, goals_df.y, ax=ax,
+                             facecolor='red',
+                             edgecolor='red')
+
 
 
 def get_col_defs(stat_type):
@@ -312,7 +350,7 @@ def get_col_defs(stat_type):
                 name='TotalShots',
                 title='Total',
                 formatter="{:.0f}",
-                group="Disparos",
+                group="Remates",
                 width=data_width,
                 cmap=cmap1,
                 ),
@@ -321,7 +359,7 @@ def get_col_defs(stat_type):
                 name='ShotOnTarget',
                 title='Al Arco',
                 formatter="{:.0f}",
-                group="Disparos",
+                group="Remates",
                 width=data_width,
                 ),
 
@@ -329,7 +367,7 @@ def get_col_defs(stat_type):
                 name='SoT_percent',
                 title='Precisión',
                 formatter=decimal_to_percent,
-                group="Disparos",
+                group="Remates",
                 cmap=cmap_test,
                 textprops= {"bbox": {"boxstyle": "circle", "pad": 0.05}},
                 width=percent_width,
@@ -428,6 +466,9 @@ if __name__ == "__main__":
 
     # --------------------- Add team statistics to Pitch
     add_pitch_stats(ax_pitch, home, away)
+
+    # --------------------- Add shots to Pitch
+    add_pitch_shots(pitch, ax_pitch, home, away)
 
     # ---------------------- Add Tables with player data
     add_tables(tables_dfs, {'home': axs_home, 'away': axs_away})

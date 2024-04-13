@@ -45,17 +45,17 @@ for week in matchweek_folders:
                             if type(shot[info][key]) == dict:
                                 for key2 in shot[info][key]:
                                     data[f"{underscore(info)}_{key}_{key2}"] = shot[info][key][key2]
-                                    print(shot[info][key][key2])
+                                    # print(shot[info][key][key2])
 
                             else:
                                 data[f"{underscore(info)}_{key}"] = shot[info][key]
-                            print(shot[info][key])
+                            # print(shot[info][key])
                     elif info != 'isHome':
                         data[underscore(info)] = shot[info]
-                        print(shot[info])
+                        # print(shot[info])
 
                 final_data.append(data)
 
 df = pd.DataFrame(final_data).fillna(0)
 
-df.to_csv(os.path.join('data', 'ligapro_2024_shots.csv'))
+df.to_csv(os.path.join('data', 'ligapro_2024_shotmap.csv'), index=False)

@@ -85,4 +85,4 @@ df = separate_percentages('crosses', df)
 
 df['ball_possession'] = df['ball_possession'].str.replace('%', '')
 
-df.to_csv(os.path.join('data', 'ligapro_2024_statistics.csv'))
+df.to_csv(os.path.join('data', 'ligapro_2024_statistics.csv'), index=False)
