@@ -9,6 +9,8 @@ from plottable.formatters import decimal_to_percent
 from plottable.plots import *
 
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+
 
 from matplotlib.colors import LinearSegmentedColormap
 
@@ -234,6 +236,41 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
                 size=tags_size,
                 ha='center', va='center'
                 )
+
+        # Add bar
+        stat1_val = df[stat]['home']
+        stat2_val = df[stat]['away']
+        total = stat1_val + stat2_val
+
+        h_padding = tags_size/2.4
+        v_offset = tags_size/3.5
+        bar_spacing = 1
+
+        bar_total_width = data_diff * 2 + (2 * h_padding)
+
+        stat1_width = bar_total_width * (stat1_val/total)
+        stat2_width = bar_total_width * (stat2_val/total)
+
+        left_coordinate = 60 - data_diff - h_padding
+        middle_coordinate = left_coordinate + stat1_width
+
+        rect1 = Rectangle((left_coordinate, border+dist*i-v_offset),
+                          stat1_width,
+                          dist-bar_spacing,
+                          # color='blue',
+                          fc='red',
+                          alpha=0.1,
+                          lw=2)
+
+        rect2 = Rectangle((middle_coordinate, border + dist * i - v_offset),
+                          stat2_width,
+                          dist-bar_spacing,
+                          # color='blue',
+                          fc='blue',
+                          alpha=0.1,
+                          lw=2)
+        ax.add_patch(rect1)
+        ax.add_patch(rect2)
 
 
 def add_pitch_shots(ax_pitch, ax, home_team, away_team):
