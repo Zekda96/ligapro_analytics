@@ -14,7 +14,7 @@ from matplotlib.patches import Rectangle
 
 from matplotlib.colors import LinearSegmentedColormap
 
-from mplsoccer import Pitch, Standardizer
+from mplsoccer import Pitch, Standardizer, FontManager
 
 import math
 
@@ -88,7 +88,7 @@ def order_data(df, match_teams, team, stat_type):
         & (df['team'] == team)
         )
 
-    limit = 16
+    limit = 5
 
     df = df[where]
     df = df[select]
@@ -215,7 +215,9 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
         ax.text(x=60, y=(border + dist*i),
                 s=stat_names[i],
                 size=tags_size,
-                ha='center', va='center')
+                ha='center', va='center',
+                # fontproperties=robotto_bold.prop
+                )
 
         # Add Home value
         text = f"{df[stat]['home']}"
@@ -268,7 +270,8 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
                           # color='blue',
                           fc='blue',
                           alpha=0.1,
-                          lw=2)
+                          lw=2,
+                          zorder=10)
         ax.add_patch(rect1)
         ax.add_patch(rect2)
 
@@ -301,12 +304,22 @@ def add_pitch_shots(ax_pitch, ax, home_team, away_team):
     mask = df['shot_type'] == 'goal'
     goals_df, shots_df = df[mask], df[~mask]
 
-    shots = ax_pitch.scatter(shots_df.x, shots_df.y, ax=ax,
+    target_mask = shots_df['shot_type'] == 'save'
+    target_df, miss_df = shots_df[target_mask], shots_df[~target_mask]
+
+    target = ax_pitch.scatter(target_df.x, target_df.y, ax=ax,
+                             facecolor='red',
+                             edgecolor='red',
+                              zorder=1,
+                              )
+
+    miss = ax_pitch.scatter(miss_df.x, miss_df.y, ax=ax,
                              facecolor='white',
                              edgecolor='red')
 
     goals = ax_pitch.scatter(goals_df.x, goals_df.y, ax=ax,
                              facecolor='red',
+                             marker='*',
                              edgecolor='red')
 
 
@@ -458,10 +471,18 @@ def add_tables(dfs: dict, axs: dict):
 
 
 if __name__ == "__main__":
+    URL5 = (
+        'https://raw.githubusercontent.com/google/fonts/main/apache/robotoslab/'
+        'RobotoSlab%5Bwght%5D.ttf')
+    robotto_bold = FontManager(URL5)
+
+    URL4 = 'https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Thin.ttf'
+    robotto_thin = FontManager(URL4)
+
     df = read_db('ligapro_2024_lineups.csv', )
 
-    home = 'aucas'
-    away = 'nacional'
+    home = 'emelec'
+    away = 'cumbaya'
 
     match = [home, away]
 
@@ -501,11 +522,11 @@ if __name__ == "__main__":
     pitch = Pitch()
     pitch.draw(ax=ax_pitch)
 
-    # --------------------- Add team statistics to Pitch
-    add_pitch_stats(ax_pitch, home, away)
-
     # --------------------- Add shots to Pitch
     add_pitch_shots(pitch, ax_pitch, home, away)
+
+    # --------------------- Add team statistics to Pitch
+    add_pitch_stats(ax_pitch, home, away)
 
     # ---------------------- Add Tables with player data
     add_tables(tables_dfs, {'home': axs_home, 'away': axs_away})
