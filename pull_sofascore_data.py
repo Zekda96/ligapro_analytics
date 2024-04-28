@@ -1,6 +1,8 @@
 import PySimpleGUI as sg
+import pandas as pd
 import json
 import os
+from inflection import underscore
 
 
 # equipos = {
@@ -21,6 +23,197 @@ import os
 #     'Universidad Católica': 'catolica',
 #     'Técnico': 'tecnico',
 # }
+
+
+def parse_json_lineups(lineups_data, home, away, week):
+    players_data = json.loads(lineups_data)
+    team_names = [home, away]
+
+    home_players = players_data['home']['players']
+    away_players = players_data['away']['players']
+
+    data = []
+    for i, team in enumerate([home_players, away_players]):
+
+        is_home = True if i == 0 else False
+
+        for player in team:
+            stats = player['statistics']
+            stats['player'] = player['player']['name']
+            stats['team'] = team_names[0] if is_home else team_names[1]
+            stats['home'] = team_names[0]
+            stats['away'] = team_names[1]
+            stats['matchweek'] = week[2:]
+
+            data.append(stats)
+
+    df = pd.DataFrame(data)
+
+    df = df.fillna(0)
+
+    # Column names
+    df = df.rename(
+        columns=
+        {
+            'onTargetScoringAttempt': 'ShotOnTarget',
+            'shotOffTarget': 'ShotOffTarget'
+        }
+    )
+
+    # New metrics
+    df['TotalShots'] = (df['ShotOffTarget'] + df['ShotOnTarget'])
+
+    # p90 metrics
+    df['accuratePass_p90'] = (df['accuratePass'] / df['minutesPlayed']) * 90
+    df['TotalShots_p90'] = (df['TotalShots'] / df['minutesPlayed']) * 90
+    df['ShotOnTarget_p90'] = (df['ShotOnTarget'] / df['minutesPlayed']) * 90
+
+    # Replace NaNs with 0
+    df = df.fillna(0)
+
+    ####
+    df_lineups = df[['team', 'TotalShots', 'ShotOnTarget',
+                     'goals', 'ShotOffTarget', 'blockedScoringAttempt']].groupby('team').sum()
+
+    return df_lineups
+
+
+def parse_json_statistics(data, home, away, week):
+    final_data = []
+
+    data = json.loads(data)
+    groups = data['statistics'][0]['groups']
+
+    # Create one row for each team for each match
+    for team in ['home', 'away']:
+        data = {'home': home,
+                'away': away,
+                'team': home if team == 'home' else away,
+                'matchweek': week[2:]
+                }
+
+        for stat_group in groups:
+            for stat in stat_group['statisticsItems']:
+                stat_name = stat['name'].lower().replace(' ', '_')
+                data[stat_name] = stat[team + 'Value']
+        final_data.append(data)
+
+    df = pd.DataFrame(final_data).fillna(0)
+
+    # -------------------------- Passes
+    # # Split passes column
+    df.rename(columns={'accurate_passes': 'passes_completed'}, inplace=True)
+
+    # # Calculate new metric
+    df.insert(df.columns.get_loc('passes') + 2, 'passes_accuracy',
+              round(df['passes_completed'] / df['passes'], 4))
+
+    df_statistics = df[['team', 'total_shots', 'shots_on_target',
+                        'ball_possession', 'passes', 'passes_completed',
+                        'passes_accuracy']].groupby('team').sum()
+
+    return df_statistics
+
+
+def parse_json_shotmap(shots, home, away, week):
+
+    shots = json.loads(shots)['shotmap']
+    final_data = []
+
+    # Create one row for each shot
+
+    for shot in shots:
+        data = {'home': home,
+                'away': away,
+                'team': home if shot['isHome'] else away,
+                'matchweek': week[-1]
+                }
+        for info in shot:
+            if info == 'player':
+                data['player'] = shot['player']['name']
+            # If stat is a dict, create one stat per each dict key
+            elif isinstance(shot[info], dict):
+                for key in shot[info]:
+                    # If stat is a dict, create one stat per each dict key
+                    if isinstance(shot[info][key], dict):
+                        for key2 in shot[info][key]:
+                            data[f"{underscore(info)}_{key}_{key2}"] = shot[info][key][key2]
+                            # print(shot[info][key][key2])
+
+                    else:
+                        data[f"{underscore(info)}_{key}"] = shot[info][key]
+                    # print(shot[info][key])
+            elif info != 'isHome':
+                data[underscore(info)] = shot[info]
+                # print(shot[info])
+
+        final_data.append(data)
+
+    df = pd.DataFrame(final_data).fillna(0)
+
+    # Goals
+    df1 = df[['team', 'shot_type']][df['shot_type'] == 'goal'].groupby('team').count()
+    df1 = df1.rename(columns={"shot_type": "goals"})
+
+    # On Target
+    df2 = df[['team', 'shot_type']][df['shot_type'].isin(['save', 'goal'])].groupby('team').count()
+    df2 = df2.rename(columns={"shot_type": "ShotsOnTarget"})
+
+    # Shots
+    df3 = df[['team', 'shot_type']].groupby('team').count()
+    df3 = df3.rename(columns={"shot_type": "Shots"})
+
+    # Join df2 and df3
+    df_shotmap = df3.join(df2, how='outer')
+
+    # Join df and df1
+    df_shotmap = df_shotmap.join(df1, how='outer')
+
+    df_shotmap = df_shotmap.fillna(0)
+
+    return df_shotmap
+
+
+def test_sot(df_line, df_stats, df_shots):
+    sot1 = df_line['ShotOnTarget'].astype(int)
+    sot2 = df_stats['shots_on_target'].astype(int)
+    sot3 = df_shots['ShotsOnTarget'].astype(int)
+
+    t1 = sot1.equals(sot2)
+    t2 = sot1.equals(sot3)
+    t3 = sot2.equals(sot3)
+
+    val = t1 & t2 & t3
+    return val
+
+
+def test_total_shots(df_statistics, df_shotmap):
+    shots1 = df_shotmap['Shots'].astype(int)
+    shots2 = df_statistics['total_shots'].astype(int)
+
+    return shots1.equals(shots2)
+
+
+def test_goals(df_lineups, df_shotmap):
+    goals1 = df_lineups['goals'].astype(int)
+    goals2 = df_shotmap['goals'].astype(int)
+
+    return goals1.equals(goals2)
+
+
+def quality_check(data, home, away, week):
+    df_lineups = parse_json_lineups(data['lineups'], home, away, week)
+    df_statistics = parse_json_statistics(data['statistics'], home, away, week)
+    df_shotmap = parse_json_shotmap(data['shotmap'], home, away, week)
+
+    test1 = test_sot(df_lineups, df_statistics, df_shotmap)
+    test2 = test_total_shots(df_statistics, df_shotmap)
+    test3 = test_goals(df_lineups, df_shotmap)
+    test4 = df_statistics['ball_possession'].values.sum() == 100
+
+    return_val = [f"SoT: {test1}", f"Total Shots: {test2}", f"Goals: {test3}", f"Possession: {test4}"]
+    return return_val
+
 
 def main():
     # GUI
@@ -58,7 +251,6 @@ def main():
         [sg.Multiline(s=(results_w, 5), k='-SHOTMAP-', default_text=rt, font=results_font)]
     ]
 
-
     # Window Layout with columns at the end
     layout = [
         [t('Please paste Sofascore match')],
@@ -75,21 +267,13 @@ def main():
          sg.Column(column_shotmap)],
         [t('')],
         [sg.Button('Load')],
+        [sg.Multiline(s=(results_w, 5), k='-CHECKS-', default_text=rt, font=results_font)],
+        [sg.Button('Save')],
 
-        # [t('Please select files:')],
-        # [t('Transcript (.docx)',        s=(w1, 1)), i(s=(w2, 1), enable_events=True, k="-TRANSCRIPT-"), fb('Browse')],
-        # [t('STT File - AWS',            s=(w1, 1)), i(s=(w2, 1), enable_events=True, k="-AWS-"), fb('Browse')],
-        #
-        # [t('')],
-        # [sg.Submit(), sg.Cancel()],
-        # [t('')],
-        # [sg.Column(column1)],
-        # [sg.Column(column2)],
-        # [t('')]
     ]
 
     # 2. Create the window
-    window = sg.Window('STT Accuracy Benchmark', layout, font=base_font)
+    window = sg.Window('Pull Sofascore match data', layout, font=base_font)
 
     # 3. Display and interact with the Window using an Event Loop
     while True:
@@ -113,22 +297,36 @@ def main():
             window['-SHOTMAP-'].update(url_shotmap)
 
         if event == 'Load':
-            for data in ['lineups', 'statistics', 'shotmap']:
+            raw_data = {}
+            home = values["-HOME-"]
+            away = values["-AWAY-"]
+            mw = values["-MW-"]
 
-                home = values["-HOME-"]
-                away = values["-AWAY-"]
-                mw = values["-MW-"]
+            for data in ['lineups', 'statistics', 'shotmap']:
+                vals = values[f'-{data.swapcase()}-']
+                raw_data[data] = vals
+                # Perform quality check
+
+            checks = quality_check(raw_data, home, away, mw)
+            window['-CHECKS-'].update("\n".join(checks))
+
+        if event == 'Save':
+            # Save data in file
+            for data in ['lineups', 'statistics', 'shotmap']:
+                # home = values["-HOME-"]
+                # away = values["-AWAY-"]
+                # mw = values["-MW-"]
 
                 file = f'{home}_{away}_{data}.json'
                 mw_dir = os.path.join('data', 'matches', f'mw{mw}')
                 fp = os.path.join(mw_dir, file)
 
-                vals = values[f'-{data.swapcase()}-']
-
                 with open(fp, 'w') as f:
-                    f.write(vals)
+                    f.write(raw_data[data])
 
                 print(f'{data} data saved at {fp}')
+
+            # Process data and insert into SQLite db
 
         # See if user wants to quit or window was closed
         if event == sg.WINDOW_CLOSED or event == 'Cancel':
