@@ -2,15 +2,16 @@
 import json
 import pandas as pd
 import os
+import sqlite3
 
 # Plot
 from plottable import ColumnDefinition, Table
 from plottable.formatters import decimal_to_percent
 from plottable.plots import *
 
+from matplotlib import rcParams
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-
 
 from matplotlib.colors import LinearSegmentedColormap
 
@@ -19,13 +20,27 @@ from mplsoccer import Pitch, Standardizer, FontManager
 import math
 
 
-def read_db(file):
+def read_db(table_name, home, away):
     """
     Load data
     """
-    fp = os.path.join('data', file)
-    with open(fp, 'r', encoding="utf8") as f:
-        df = pd.read_csv(f)
+
+    # Connect to the SQLite database
+    db_path = os.path.join(os.getcwd(), 'data', 'liga_pro_ecuador.db')
+    conn = sqlite3.connect(db_path)
+
+    # Define the SQL query
+    query = f"""
+    SELECT * FROM {table_name}
+    WHERE home == "{home}"
+    AND away == "{away}";
+    """
+
+    # Read the data into a Pandas DataFrame
+    df = pd.read_sql_query(query, conn)
+
+    # Close the database connection
+    conn.close()
 
     return df
 
@@ -60,7 +75,7 @@ def team_name_to_path(fn):
     return fp
 
 
-def order_data(df, match_teams, team, stat_type):
+def order_data(df, team, stat_type):
     select = [
         'player', 'team', 'minutesPlayed'
     ]
@@ -78,15 +93,13 @@ def order_data(df, match_teams, team, stat_type):
 
         order_by = 'TotalShots'
 
-    home = match_teams[0]
-    away = match_teams[1]
+    # home = match_teams[0]
+    # away = match_teams[1]
 
     where = (
-        (df['home'] == home)
-        & (df['away'] == away)
-        & (df['minutesPlayed'] > 0)
-        & (df['team'] == team)
-        )
+            (df['minutesPlayed'] > 0)
+            & (df['team'] == team)
+    )
 
     limit = 5
 
@@ -117,39 +130,38 @@ def order_data(df, match_teams, team, stat_type):
 
 
 def add_labels(fig, home_team, away_team):
-
     teams = {'liga': 'LDU',
-         'emelec': 'Emelec',
-         'barcelona': 'Barcelona',
-         'delfin': 'Delfin',
-         'catolica': 'U. Catolica',
-         'nacional': 'El Nacional',
-         'macara': 'Macara',
-         'imbabura': 'Imbabura',
-         'cuenca': 'D. Cuenca',
-         'aucas': 'Aucas',
-         'independiente': 'IDV',
-         'mushuc-runa': 'Mushuc Runa',
-         'orense': 'Orense',
-         'cumbaya': 'Cumbaya',
-         'libertad': 'Libertad',
-         'tecnico': 'Tecnico U.'
-         }
-    
+             'emelec': 'Emelec',
+             'barcelona': 'Barcelona',
+             'delfin': 'Delfin',
+             'catolica': 'U. Catolica',
+             'nacional': 'El Nacional',
+             'macara': 'Macara',
+             'imbabura': 'Imbabura',
+             'cuenca': 'D. Cuenca',
+             'aucas': 'Aucas',
+             'independiente': 'IDV',
+             'mushuc-runa': 'Mushuc Runa',
+             'orense': 'Orense',
+             'cumbaya': 'Cumbaya',
+             'libertad': 'Libertad',
+             'tecnico': 'Tecnico U.'
+             }
+
     # ------------------- Labels
     ax_title.text(x=0.5, y=0.9,
-                s=f'{teams[home_team]} vs. {teams[away_team]}',
+                  s=f'{teams[home_team]} vs. {teams[away_team]}',
                   size=40,
                   ha='center',
                   va='top'
                   )
-    
+
     ax_title.text(x=0.5, y=0.5,
-                s=f'Reporte de Partido - Liga Pro 2024',
-                size=25,
-                ha='center',
-                va='top'
-                )
+                  s=f'Reporte de Partido - Liga Pro 2024',
+                  size=25,
+                  ha='center',
+                  va='top'
+                  )
 
 
 def get_team_stats(df: pd.DataFrame, stats: dict, home, away):
@@ -171,7 +183,6 @@ def get_team_stats(df: pd.DataFrame, stats: dict, home, away):
 
 def get_goals(df, home: str, away: str):
     df = df[df['shot_type'] == 'goal']
-    df = df[(df['home'] == home) & (df['away'] == away)]
     home_goals = len(df[df['team'] == home])
     away_goals = len(df[df['team'] == away])
 
@@ -187,8 +198,8 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
     :return:
     """
 
-    df_stats = read_db('ligapro_2024_statistics.csv')
-    goals = get_goals(read_db('ligapro_2024_shotmap.csv'), home_team, away_team)
+    df_stats = read_db('statistics', home_team, away_team)
+    goals = get_goals(read_db('shotmap', home_team, away_team), home_team, away_team)
 
     # Stats to show on pitch. Display name and col name on df
     stats = {
@@ -205,14 +216,14 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
     stat_names = list(stats.keys())
     dist = 8
     n = len(stat_names) - 1
-    border = (80 - n*dist)/2
+    border = (80 - n * dist) / 2
 
     data_diff = 16
 
     tags_size = 14
     for i, stat in enumerate(df.columns):
         # Write stat name
-        ax.text(x=60, y=(border + dist*i),
+        ax.text(x=60, y=(border + dist * i),
                 s=stat_names[i],
                 size=tags_size,
                 ha='center', va='center',
@@ -223,7 +234,7 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
         text = f"{df[stat]['home']}"
         # Add '%' for possession stat
         text = text + '%' if stat == 'ball_possession' else text
-        ax.text(x=60-data_diff, y=(border + dist*i),
+        ax.text(x=60 - data_diff, y=(border + dist * i),
                 s=text,
                 size=tags_size,
                 ha='center', va='center'
@@ -233,7 +244,7 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
         # Add '%' for possession stat
         text = text + '%' if stat == 'ball_possession' else text
 
-        ax.text(x=60+data_diff, y=(border + dist*i),
+        ax.text(x=60 + data_diff, y=(border + dist * i),
                 s=text,
                 size=tags_size,
                 ha='center', va='center'
@@ -244,32 +255,37 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
         stat2_val = df[stat]['away']
         total = stat1_val + stat2_val
 
-        h_padding = tags_size/2.4
-        v_offset = tags_size/3.5
+        h_padding = tags_size / 2.4
+        v_offset = tags_size / 3.5
         bar_spacing = 1
 
         bar_total_width = data_diff * 2 + (2 * h_padding)
 
-        stat1_width = bar_total_width * (stat1_val/total)
-        stat2_width = bar_total_width * (stat2_val/total)
+        if total == 0:
+            stat1_width = bar_total_width * 0.5
+            stat2_width = bar_total_width * 0.5
+            total = 2
+        else:
+            stat1_width = bar_total_width * (stat1_val / total)
+            stat2_width = bar_total_width * (stat2_val / total)
 
         left_coordinate = 60 - data_diff - h_padding
         middle_coordinate = left_coordinate + stat1_width
 
-        rect1 = Rectangle((left_coordinate, border+dist*i-v_offset),
+        rect1 = Rectangle((left_coordinate, border + dist * i - v_offset),
                           stat1_width,
-                          dist-bar_spacing,
+                          dist - bar_spacing,
                           # color='blue',
                           fc='red',
-                          alpha=0.1,
+                          alpha=0.3,
                           lw=2)
 
         rect2 = Rectangle((middle_coordinate, border + dist * i - v_offset),
                           stat2_width,
-                          dist-bar_spacing,
+                          dist - bar_spacing,
                           # color='blue',
                           fc='blue',
-                          alpha=0.1,
+                          alpha=0.3,
                           lw=2,
                           zorder=10)
         ax.add_patch(rect1)
@@ -277,7 +293,6 @@ def add_pitch_stats(ax, home_team: str, away_team: str):
 
 
 def add_pitch_shots(ax_pitch, ax, home_team, away_team):
-
     """
     Func to add team stats on pitch.
     :param ax: Axis containing pitch.
@@ -287,13 +302,12 @@ def add_pitch_shots(ax_pitch, ax, home_team, away_team):
     """
     # Standardizer
     standard = Standardizer(pitch_from='opta', pitch_to='statsbomb')
-    df = read_db('ligapro_2024_shotmap.csv')
+    df = read_db('shotmap', home_team, away_team)
 
     df.rename(columns={'player_coordinates_x': 'x',
                        'player_coordinates_y': 'y'},
               inplace=True)
 
-    df = df[(df['home'] == home_team) & (df['away'] == away_team)]
 
     # Invert away team shot coordinates
     df.loc[df['team'] == away_team, 'x'] = 100 - df.loc[df['team'] == away_team, 'x']
@@ -307,25 +321,30 @@ def add_pitch_shots(ax_pitch, ax, home_team, away_team):
     target_mask = shots_df['shot_type'] == 'save'
     target_df, miss_df = shots_df[target_mask], shots_df[~target_mask]
 
-    target = ax_pitch.scatter(target_df.x, target_df.y, ax=ax,
-                             facecolor='red',
-                             edgecolor='red',
-                              zorder=1,
-                              )
+
 
     miss = ax_pitch.scatter(miss_df.x, miss_df.y, ax=ax,
-                             facecolor='white',
-                             edgecolor='red')
+                            facecolor='white',
+                            edgecolor='red',
+                            alpha=0.8,
+                            )
+
+    target = ax_pitch.scatter(target_df.x, target_df.y, ax=ax,
+                              facecolor='red',
+                              edgecolor='red',
+                              # alpha=0.65,
+                              )
 
     goals = ax_pitch.scatter(goals_df.x, goals_df.y, ax=ax,
-                             facecolor='red',
-                             marker='*',
-                             edgecolor='red')
-
+                            #  facecolor='red',
+                            #  edgecolor='black',
+                             marker='football',
+                             s=rcParams['lines.markersize'] ** 2.8,
+                            #  linewidth=0.5,
+                             )
 
 
 def get_col_defs(stat_type):
-       
     cmap_test = LinearSegmentedColormap.from_list(
         # name="bugw", colors=["#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"], N=256
         name="bugw", colors=["#FF9C9C", "#FFFFFF", "#53CD76"], N=256
@@ -336,7 +355,7 @@ def get_col_defs(stat_type):
         colors=[
             "#f2f2f4",
             "#f2f2f4",
-            ], N=256
+        ], N=256
     )
 
     data_width = 0.6
@@ -347,53 +366,53 @@ def get_col_defs(stat_type):
             name='index',
             title='',
             width=0.3,
-            ),
+        ),
 
         ColumnDefinition(
             name='player',
             title='',
             width=1.8,
-            ),
+        ),
 
         ColumnDefinition(
             name='minutesPlayed',
             title='Minutos',
             formatter="{:.0f}",
             width=data_width,
-            )
-        ]
+        )
+    ]
 
     if stat_type == 'pass':
         stats_col_defs = [
-        ColumnDefinition(
-            name='totalPass',
-            title='Total',
-            formatter="{:.0f}",
-            group="Pases",
-            width=data_width,
-            cmap=cmap1,
-            ),  
-
-        ColumnDefinition(
-            name='accuratePass',
-            title='Completos',
-            formatter="{:.0f}",
-            group="Pases",
-            width=data_width,
+            ColumnDefinition(
+                name='totalPass',
+                title='Total',
+                formatter="{:.0f}",
+                group="Pases",
+                width=data_width,
+                cmap=cmap1,
             ),
 
-        ColumnDefinition(
-            name='PassAccuracy',
-            title='Precisión',
-            formatter=decimal_to_percent,
-            group="Pases",
-            cmap=cmap_test,
-            width=percent_width,            
-            textprops= {"bbox": {"boxstyle": "circle", "pad": 0.05}},
-            ) 
-        ] 
+            ColumnDefinition(
+                name='accuratePass',
+                title='Completos',
+                formatter="{:.0f}",
+                group="Pases",
+                width=data_width,
+            ),
 
-            
+            ColumnDefinition(
+                name='PassAccuracy',
+                title='Precisión',
+                formatter=decimal_to_percent,
+                group="Pases",
+                cmap=cmap_test,
+                width=percent_width,
+                textprops={"bbox": {"boxstyle": "circle", "pad": 0.05}},
+            )
+        ]
+
+
     elif stat_type == 'shot':
         stats_col_defs = [
             ColumnDefinition(
@@ -403,7 +422,7 @@ def get_col_defs(stat_type):
                 group="Remates",
                 width=data_width,
                 cmap=cmap1,
-                ),
+            ),
 
             ColumnDefinition(
                 name='ShotOnTarget',
@@ -411,7 +430,7 @@ def get_col_defs(stat_type):
                 formatter="{:.0f}",
                 group="Remates",
                 width=data_width,
-                ),
+            ),
 
             ColumnDefinition(
                 name='SoT_percent',
@@ -419,9 +438,9 @@ def get_col_defs(stat_type):
                 formatter=decimal_to_percent,
                 group="Remates",
                 cmap=cmap_test,
-                textprops= {"bbox": {"boxstyle": "circle", "pad": 0.05}},
+                textprops={"bbox": {"boxstyle": "circle", "pad": 0.05}},
                 width=percent_width,
-                )
+            )
         ]
 
     for stat in stats_col_defs:
@@ -478,19 +497,18 @@ if __name__ == "__main__":
 
     URL4 = 'https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Thin.ttf'
     robotto_thin = FontManager(URL4)
+  
+    home = 'delfin'
+    away = 'independiente'
 
-    df = read_db('ligapro_2024_lineups.csv', )
+    df = read_db('lineups', home, away)
 
-    home = 'emelec'
-    away = 'cumbaya'
 
-    match = [home, away]
-
-    tables_dfs = {'pass': {'home': order_data(df, match, home, 'pass'),
-                           'away': order_data(df, match, away, 'pass')
+    tables_dfs = {'pass': {'home': order_data(df, home, 'pass'),
+                           'away': order_data(df, away, 'pass')
                            },
-                  'shot': {'home': order_data(df, match, home, 'shot'),
-                           'away': order_data(df, match, away, 'shot')
+                  'shot': {'home': order_data(df, home, 'shot'),
+                           'away': order_data(df, away, 'shot')
                            }
                   }
 
@@ -501,16 +519,16 @@ if __name__ == "__main__":
     fig.patch.set_facecolor(bg_color)
 
     subfigs = fig.subfigures(4, 1,
-                         wspace=0.01,
-                         hspace=0.01,
-                         height_ratios=[0.1, 0.3 , 0.6, 0.05]
-                         )
+                             wspace=0.01,
+                             hspace=0.01,
+                             height_ratios=[0.1, 0.3, 0.6, 0.05]
+                             )
 
     ax_title = subfigs[0].subplots(1, 1)
     ax_title.axis('off')
 
     ax_pitch = subfigs[1].subplots(1, 1)
-    axs_tables = subfigs[2].subplots(2,2)
+    axs_tables = subfigs[2].subplots(2, 2)
 
     ax_annotate = subfigs[3].subplots(1, 1)
     ax_annotate.axis('off')
