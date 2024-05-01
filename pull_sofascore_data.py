@@ -369,7 +369,7 @@ def main():
                 with open(fp, 'w', encoding="utf-8") as f:
                     f.write(raw_data[data])
 
-                print(f'{data} data saved at {fp}')
+                print(f'{data} file saved at {fp}')
 
                 # Process data and insert into SQLite db
                 date_string = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -377,7 +377,7 @@ def main():
                 dataframes[data].loc[:, 'timestamp'] = date_object
 
                 dataframes[data].to_sql(data, con=db_engine, if_exists='append', index=False)
-                print(f'{data} dataframe saved at {db_name}.{data}')
+                print(f'{data} df saved at {db_name}.{data}')
 
 
         # See if user wants to quit or window was closed

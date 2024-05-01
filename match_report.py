@@ -174,8 +174,8 @@ def get_team_stats(df: pd.DataFrame, stats: dict, home, away):
             data['home']['goals'] = stat[0]
             data['away']['goals'] = stat[1]
         else:
-            data['home'][stat] = df[stat].iloc[0]
-            data['away'][stat] = df[stat].iloc[1]
+            data['home'][stat] = df[df['home'] == df['team']].iloc[0][stat]
+            data['away'][stat] = df[df['away'] == df['team']].iloc[0][stat]
 
     data = pd.DataFrame(data).transpose()
     return data
@@ -498,8 +498,8 @@ if __name__ == "__main__":
     URL4 = 'https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Thin.ttf'
     robotto_thin = FontManager(URL4)
   
-    home = 'delfin'
-    away = 'independiente'
+    home = 'tecnico'
+    away = 'cumbaya'
 
     df = read_db('lineups', home, away)
 

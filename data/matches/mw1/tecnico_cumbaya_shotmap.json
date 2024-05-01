@@ -1,1 +1,1556 @@
-{"shotmap": [{"player": {"name": "Gast\u00f3n Poncet", "slug": "gaston-poncet", "shortName": "G. Poncet", "position": "F", "jerseyNumber": "7", "userCount": 14, "id": 873816}, "isHome": true, "shotType": "miss", "situation": "regular", "playerCoordinates": {"x": 0.43203040509646407, "y": 92.75272186661887, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "close-right", "goalMouthCoordinates": {"x": 0, "y": 15.266370260569204, "z": 26.4}, "id": 2545736, "time": 88, "addedTime": 6, "timeSeconds": 5726, "draw": {"start": {"x": 50.47860210185469, "y": 28.50859583023837}, "end": {"x": 63.78106485232033, "y": 0}, "goal": {"x": 47.44302242863549, "y": 65.833602117335}}, "reversedPeriodTime": 1, "reversedPeriodTimeSeconds": 574, "incidentType": "shot"}, {"player": {"name": "Carlos Arboleda", "firstName": "", "lastName": "", "slug": "carlos-arboleda", "shortName": "C. Arboleda", "position": "M", "jerseyNumber": "37", "userCount": 7, "id": 909664}, "isHome": false, "shotType": "post", "situation": "assisted", "playerCoordinates": {"x": 6.30330323916661, "y": 38.354358715013326, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "high", "goalMouthCoordinates": {"x": 0, "y": 62.522530250649794, "z": 38.6}, "id": 2545717, "time": 85, "timeSeconds": 4653, "draw": {"start": {"x": 22.160309282841673, "y": 0.8463929073607375}, "end": {"x": 63.049785814388514, "y": 0}, "goal": {"x": 66.57740246110673, "y": 100}}, "reversedPeriodTime": 13, "reversedPeriodTimeSeconds": 747, "incidentType": "shot"}, {"player": {"name": "Emmanuel Torres", "firstName": "Emmanuel Torres", "slug": "emmanuel-torres", "shortName": "E. Torres", "position": "M", "jerseyNumber": "70", "userCount": 1, "id": 1805479}, "isHome": false, "shotType": "block", "situation": "throw-in-set-piece", "playerCoordinates": {"x": 19.11575491580718, "y": 94.75376157825688, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 46.20183546637237, "z": 19}, "blockCoordinates": {"x": 14.26228852661296, "y": 58.18745603014213, "z": 0}, "id": 2545716, "time": 68, "timeSeconds": 4643, "draw": {"start": {"x": 35.156474562965656, "y": 23.87242627961406}, "block": {"x": 88.24903492553472, "y": 1.7046557322427915}, "end": {"x": 98.78082318905784, "y": 0}, "goal": {"x": 31.51206647103662, "y": 81}}, "reversedPeriodTime": 13, "reversedPeriodTimeSeconds": 757, "incidentType": "shot"}, {"player": {"name": "Carlos P\u00e9rez", "slug": "carlos-perez", "shortName": "C. P\u00e9rez", "position": "D", "jerseyNumber": "32", "userCount": 13, "id": 829983}, "isHome": true, "shotType": "miss", "situation": "corner", "playerCoordinates": {"x": 4.931889996955494, "y": 66.60042310197791, "z": 0}, "bodyPart": "head", "goalMouthLocation": "high-left", "goalMouthCoordinates": {"x": 0, "y": 6.579842428950641, "z": 55.6}, "id": 2545710, "time": 85, "timeSeconds": 4508, "draw": {"start": {"x": 37.13416299910443, "y": 9.682905229413644}, "end": {"x": 38.203179634233706, "y": 0}, "goal": {"x": 74.38256999696931, "y": 60.37651232798962}}, "reversedPeriodTime": 15, "reversedPeriodTimeSeconds": 892, "incidentType": "shot"}, {"player": {"name": "Melvin Diaz", "firstName": "", "lastName": "", "slug": "diaz-melvin", "shortName": "M. Diaz", "position": "M", "jerseyNumber": "19", "userCount": 14, "id": 1069637}, "isHome": true, "shotType": "save", "situation": "free-kick", "playerCoordinates": {"x": 19.657571108965765, "y": 100, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "high-centre", "goalMouthCoordinates": {"x": 0, "y": 3.318904897411578, "z": 31.6}, "blockCoordinates": {"x": 0.7533406851317453, "y": 14.381695203506297, "z": 0}, "id": 2545683, "time": 61, "timeSeconds": 4134, "draw": {"start": {"x": 100, "y": 18.981101857823102}, "block": {"x": 61.045975065381626, "y": 0.3344275367936107}, "end": {"x": 15.696625085842498, "y": 0}, "goal": {"x": 28.63996698165076, "y": 100}}, "reversedPeriodTime": 22, "reversedPeriodTimeSeconds": 1266, "incidentType": "shot"}, {"player": {"name": "Elian Carabali", "slug": "carabali-elian", "shortName": "E. Carabali", "position": "M", "jerseyNumber": "17", "userCount": 8, "id": 1474739}, "isHome": false, "shotType": "miss", "situation": "assisted", "playerCoordinates": {"x": 24, "y": 66.3673653951948, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "close-high-left", "goalMouthCoordinates": {"x": 0, "y": 18.1165898014723, "z": 59.7}, "id": 2545677, "time": 71, "timeSeconds": 3797, "draw": {"start": {"x": 53.34254010544326, "y": 24}, "end": {"x": 38.85429417030947, "y": 0}, "goal": {"x": 56.980166651906146, "y": 13.327750708960885}}, "reversedPeriodTime": 27, "reversedPeriodTimeSeconds": 1603, "incidentType": "shot"}, {"player": {"name": "Elian Carabali", "slug": "carabali-elian", "shortName": "E. Carabali", "position": "M", "jerseyNumber": "17", "userCount": 8, "id": 1474739}, "isHome": true, "shotType": "miss", "situation": "set-piece", "playerCoordinates": {"x": 12, "y": 66.42614762767721, "z": 0}, "bodyPart": "head", "goalMouthLocation": "left", "goalMouthCoordinates": {"x": 0, "y": 60, "z": 30.6}, "id": 2545646, "time": 70, "timeSeconds": 3645, "draw": {"start": {"x": 27.24850544956106, "y": 12}, "end": {"x": 40, "y": 0}, "goal": {"x": 40, "y": 87.25619492985035}}, "reversedPeriodTime": 30, "reversedPeriodTimeSeconds": 1755, "incidentType": "shot"}, {"player": {"name": "Gast\u00f3n Poncet", "slug": "gaston-poncet", "shortName": "G. Poncet", "position": "F", "jerseyNumber": "7", "userCount": 14, "id": 873816}, "isHome": false, "shotType": "save", "situation": "regular", "playerCoordinates": {"x": 14.26412890080412, "y": 76, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 62.74977548961296, "z": 6.3}, "blockCoordinates": {"x": 0.6392960060052255, "y": 45.40886644010916, "z": 0}, "id": 2545640, "time": 61, "timeSeconds": 3556, "draw": {"start": {"x": 76, "y": 15.461408967696332}, "block": {"x": 48.89927059256427, "y": 2.2215560476381877}, "end": {"x": 36.06244656869576, "y": 0}, "goal": {"x": 23.405635483053985, "y": 100}}, "reversedPeriodTime": 31, "reversedPeriodTimeSeconds": 1844, "incidentType": "shot"}, {"player": {"name": "Carlos Arboleda", "firstName": "", "lastName": "", "slug": "carlos-arboleda", "shortName": "C. Arboleda", "position": "M", "jerseyNumber": "37", "userCount": 7, "id": 909664}, "isHome": false, "shotType": "miss", "situation": "set-piece", "playerCoordinates": {"x": 0.09535822309934439, "y": 33.80032422173052, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "close-right", "goalMouthCoordinates": {"x": 0, "y": 75.068736223863, "z": 18.1}, "id": 2545622, "time": 58, "timeSeconds": 3242, "draw": {"start": {"x": 51.936530112071495, "y": 21.371521058691705}, "end": {"x": 41.487092779649, "y": 0}, "goal": {"x": 70.72845519511407, "y": 27.741986079018545}}, "reversedPeriodTime": 36, "reversedPeriodTimeSeconds": 2158, "incidentType": "shot"}, {"player": {"name": "Carlos Arboleda", "firstName": "", "lastName": "", "slug": "carlos-arboleda", "shortName": "C. Arboleda", "position": "M", "jerseyNumber": "37", "userCount": 7, "id": 909664}, "isHome": true, "shotType": "block", "situation": "free-kick", "playerCoordinates": {"x": 10, "y": 100, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "low-left", "goalMouthCoordinates": {"x": 0, "y": 52, "z": 19}, "blockCoordinates": {"x": 3.784084314115905, "y": 85.67543254427481, "z": 0}, "id": 2545630, "time": 55, "timeSeconds": 3239, "draw": {"start": {"x": 30.27365768870854, "y": 10}, "block": {"x": 71.78406041266832, "y": 0.3304814841054844}, "end": {"x": 48, "y": 0}, "goal": {"x": 48, "y": 81}}, "reversedPeriodTime": 37, "reversedPeriodTimeSeconds": 2161, "incidentType": "shot"}, {"player": {"name": "Diego Armas", "slug": "diego-armas", "shortName": "D. Armas", "position": "M", "jerseyNumber": "8", "userCount": 9, "id": 925605}, "isHome": true, "shotType": "save", "situation": "assisted", "playerCoordinates": {"x": 41.06541123773175, "y": 89.36380774222756, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 50, "z": 19}, "blockCoordinates": {"x": 3.7439969544331824, "y": 68.98280523862613, "z": 0}, "id": 2545611, "time": 42, "timeSeconds": 3041, "draw": {"start": {"x": 60.12131579720939, "y": 39.19257298417362}, "block": {"x": 7.406090985068694, "y": 3.3531998460929158}, "end": {"x": 50, "y": 0}, "goal": {"x": 50, "y": 81}}, "reversedPeriodTime": 40, "reversedPeriodTimeSeconds": 2359, "incidentType": "shot"}, {"player": {"name": "Gorman Estacio", "slug": "gorman-estacio", "shortName": "G. Estacio", "position": "D", "jerseyNumber": "37", "userCount": 1, "id": 925452}, "isHome": true, "shotType": "miss", "situation": "assisted", "playerCoordinates": {"x": 39.3311643015846, "y": 69.92107761690116, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "close-left", "goalMouthCoordinates": {"x": 0, "y": 62.35807909493347, "z": 15.3}, "id": 2545522, "time": 47, "addedTime": 1, "timeSeconds": 2758, "draw": {"start": {"x": 48.35201634094371, "y": 26.496796406091633}, "end": {"x": 26.233269050255103, "y": 0}, "goal": {"x": 7.616931078860603, "y": 42.4229726554025}}, "reversedPeriodTime": 1, "reversedPeriodTimeSeconds": 2642, "incidentType": "shot"}, {"player": {"name": "Diego Armas", "slug": "diego-armas", "shortName": "D. Armas", "position": "M", "jerseyNumber": "8", "userCount": 9, "id": 925605}, "isHome": false, "shotType": "goal", "goalType": "regular", "situation": "assisted", "playerCoordinates": {"x": 6.904540786982466, "y": 56.99321346716407, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-left", "goalMouthCoordinates": {"x": 0, "y": 100, "z": 6.3}, "id": 2545509, "time": 49, "timeSeconds": 2492, "draw": {"start": {"x": 96.04872823857876, "y": 3.8078165015068883}, "end": {"x": 10.468262268687461, "y": 0}, "goal": {"x": 5.7598964314301995, "y": 40.77938765319094}}, "reversedPeriodTime": 4, "reversedPeriodTimeSeconds": 208, "incidentType": "shot"}, {"player": {"name": "Juan Jimenez", "slug": "juan-jimenez", "shortName": "J. Jimenez", "position": "M", "jerseyNumber": "21", "userCount": 16, "id": 922048}, "isHome": true, "shotType": "save", "situation": "assisted", "playerCoordinates": {"x": 1.6938664766328753, "y": 54.51005686731416, "z": 0}, "bodyPart": "head", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 61.045673456531304, "z": 12}, "blockCoordinates": {"x": 2, "y": 7.9866638078566865, "z": 0}, "id": 2545502, "time": 49, "timeSeconds": 2412, "draw": {"start": {"x": 67.2524874735004, "y": 1.3715579671104194}, "block": {"x": 16.708604800462552, "y": 2}, "end": {"x": 7.170173877504588, "y": 0}, "goal": {"x": 17.443326173519594, "y": 88}}, "reversedPeriodTime": 5, "reversedPeriodTimeSeconds": 288, "incidentType": "shot"}, {"player": {"name": "Milton Maciel", "slug": "milton-maciel", "shortName": "M. Maciel", "position": "M", "jerseyNumber": "10", "userCount": 14, "id": 932255}, "isHome": true, "shotType": "save", "situation": "assisted", "playerCoordinates": {"x": 34.935788461771054, "y": 32.77919558875519, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 64.92855236378426, "z": 7.6}, "blockCoordinates": {"x": 0.34859536539069436, "y": 29.74333567808553, "z": 0}, "id": 2545501, "time": 43, "timeSeconds": 2405, "draw": {"start": {"x": 18.503727105972487, "y": 18.60850134317423}, "block": {"x": 56.14703118870277, "y": 0.07008048835254099}, "end": {"x": 47.574500114309835, "y": 0}, "goal": {"x": 43.87252808518509, "y": 68.30020668336513}}, "reversedPeriodTime": 5, "reversedPeriodTimeSeconds": 295, "incidentType": "shot"}, {"player": {"name": "Edison Carcelen", "firstName": "", "lastName": "", "slug": "edison-carcelen", "shortName": "E. Carcel\u00e9n", "position": "D", "jerseyNumber": "31", "userCount": 4, "id": 846828}, "isHome": false, "shotType": "miss", "situation": "corner", "playerCoordinates": {"x": 7, "y": 55.24822218048305, "z": 0}, "bodyPart": "head", "goalMouthLocation": "left", "goalMouthCoordinates": {"x": 0, "y": 18.19397141367918, "z": 13.9}, "id": 2545492, "time": 33, "timeSeconds": 2317, "draw": {"start": {"x": 14.324781885784738, "y": 7}, "end": {"x": 8.718529405364002, "y": 0}, "goal": {"x": 41.04167457329858, "y": 100}}, "reversedPeriodTime": 7, "reversedPeriodTimeSeconds": 383, "incidentType": "shot"}, {"player": {"name": "Milton Maciel", "slug": "milton-maciel", "shortName": "M. Maciel", "position": "M", "jerseyNumber": "10", "userCount": 14, "id": 932255}, "isHome": false, "shotType": "miss", "situation": "fast-break", "playerCoordinates": {"x": 15.641377617823363, "y": 3.0537405382388414, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "high", "goalMouthCoordinates": {"x": 0, "y": 46.73737057474536, "z": 63.9}, "id": 2545486, "time": 36, "timeSeconds": 2128, "draw": {"start": {"x": 28.40386418040464, "y": 0.5617209059713737}, "end": {"x": 2.5875405835923573, "y": 0}, "goal": {"x": 47.132025222306915, "y": 58.50672199495403}}, "reversedPeriodTime": 10, "reversedPeriodTimeSeconds": 572, "incidentType": "shot"}, {"player": {"name": "Melvin Diaz", "firstName": "", "lastName": "", "slug": "diaz-melvin", "shortName": "M. Diaz", "position": "M", "jerseyNumber": "19", "userCount": 14, "id": 1069637}, "isHome": true, "shotType": "save", "situation": "fast-break", "playerCoordinates": {"x": 29.424198669557263, "y": 100, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "low-left", "goalMouthCoordinates": {"x": 0, "y": 100, "z": 5.7}, "blockCoordinates": {"x": 0.3065982692482958, "y": 51.48728795870791, "z": 0}, "id": 2545485, "time": 40, "timeSeconds": 1930, "draw": {"start": {"x": 100, "y": 26.560912547406183}, "block": {"x": 1.6440376812632636, "y": 1.783425119028633}, "end": {"x": 10.553301675870514, "y": 0}, "goal": {"x": 49.0197444223464, "y": 100}}, "reversedPeriodTime": 13, "reversedPeriodTimeSeconds": 770, "incidentType": "shot"}, {"player": {"name": "Milton Maciel", "slug": "milton-maciel", "shortName": "M. Maciel", "position": "M", "jerseyNumber": "10", "userCount": 14, "id": 932255}, "isHome": false, "shotType": "save", "situation": "assisted", "playerCoordinates": {"x": 32, "y": 22.621667917698353, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "low-right", "goalMouthCoordinates": {"x": 0, "y": 14.706884446677996, "z": 10.8}, "blockCoordinates": {"x": 2.9999636315855556, "y": 53.89009233458694, "z": 0}, "id": 2545473, "time": 30, "timeSeconds": 1870, "draw": {"start": {"x": 32.38988068132029, "y": 32}, "block": {"x": 44.06442913625517, "y": 2.546472715562639}, "end": {"x": 17.711147525869443, "y": 0}, "goal": {"x": 94.14675852090446, "y": 66.89737077680239}}, "reversedPeriodTime": 14, "reversedPeriodTimeSeconds": 830, "incidentType": "shot"}, {"player": {"name": "Melvin Diaz", "firstName": "", "lastName": "", "slug": "diaz-melvin", "shortName": "M. Diaz", "position": "M", "jerseyNumber": "19", "userCount": 14, "id": 1069637}, "isHome": false, "shotType": "save", "situation": "assisted", "playerCoordinates": {"x": 20.831775556591122, "y": 100, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 69.73827921908622, "z": 6.3}, "blockCoordinates": {"x": 1, "y": 38.683873168086926, "z": 0}, "id": 2545468, "time": 30, "timeSeconds": 1728, "draw": {"start": {"x": 100, "y": 17.15455985061098}, "block": {"x": 57.151689484096714, "y": 1}, "end": {"x": 61.30188604797106, "y": 0}, "goal": {"x": 18.833967446325765, "y": 9.816114617920277}}, "reversedPeriodTime": 17, "reversedPeriodTimeSeconds": 972, "incidentType": "shot"}, {"player": {"name": "Diego Armas", "slug": "diego-armas", "shortName": "D. Armas", "position": "M", "jerseyNumber": "8", "userCount": 9, "id": 925605}, "isHome": true, "shotType": "block", "situation": "assisted", "playerCoordinates": {"x": 5.287205617532443, "y": 74.27405622685387, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 96.3602896497932, "z": 19}, "blockCoordinates": {"x": 20.51834575530037, "y": 34.67559148269335, "z": 0}, "id": 2545467, "time": 37, "timeSeconds": 1695, "draw": {"start": {"x": 31.7101355569568, "y": 22.246759503500073}, "block": {"x": 43.07522035953669, "y": 14.876632719375312}, "end": {"x": 67.87261039270268, "y": 0}, "goal": {"x": 88.45578496311452, "y": 81}}, "reversedPeriodTime": 17, "reversedPeriodTimeSeconds": 1005, "incidentType": "shot"}, {"player": {"name": "Augusto Magoia", "firstName": "Augusto Magoia", "slug": "augusto-magoia", "shortName": "A. Magoia", "jerseyNumber": "9", "userCount": 5, "id": 1651700}, "isHome": true, "shotType": "save", "situation": "fast-break", "playerCoordinates": {"x": 48.40560865824568, "y": 31.229057136822455, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-right", "goalMouthCoordinates": {"x": 0, "y": 3.323699683205895, "z": 18.4}, "blockCoordinates": {"x": 0.986293881107763, "y": 45.363983305903545, "z": 0}, "id": 2545466, "time": 29, "timeSeconds": 1467, "draw": {"start": {"x": 3.311825486593847, "y": 16.389679144518094}, "block": {"x": 6.658898247803691, "y": 0.11550070450655625}, "end": {"x": 34.24616492084764, "y": 0}, "goal": {"x": 44.76519153453504, "y": 62.90435408304572}}, "reversedPeriodTime": 21, "reversedPeriodTimeSeconds": 1233, "incidentType": "shot"}, {"player": {"name": "Eddie Guevara", "firstName": "", "lastName": "", "slug": "eddie-guevara", "shortName": "E. Guevara", "position": "D", "jerseyNumber": "2", "userCount": 7, "id": 827127}, "isHome": true, "shotType": "block", "situation": "corner", "playerCoordinates": {"x": 10.926883445701376, "y": 70.15756268137118, "z": 0}, "bodyPart": "head", "goalMouthLocation": "low-left", "goalMouthCoordinates": {"x": 0, "y": 36.377174427739206, "z": 19}, "blockCoordinates": {"x": 1.0140269320856823, "y": 89.06932606692911, "z": 0}, "id": 2545461, "time": 33, "timeSeconds": 1427, "draw": {"start": {"x": 53.19260204626808, "y": 8.770075454100722}, "block": {"x": 20.56671784753508, "y": 0.3186600661536063}, "end": {"x": 28.891644235527465, "y": 0}, "goal": {"x": 37.40763948244201, "y": 81}}, "reversedPeriodTime": 22, "reversedPeriodTimeSeconds": 1273, "incidentType": "shot"}, {"player": {"name": "Milton Maciel", "slug": "milton-maciel", "shortName": "M. Maciel", "position": "M", "jerseyNumber": "10", "userCount": 14, "id": 932255}, "isHome": false, "shotType": "miss", "situation": "assisted", "playerCoordinates": {"x": 35, "y": 5.798429126094888, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "close-high-left", "goalMouthCoordinates": {"x": 0, "y": 34.825291123520415, "z": 41.7}, "id": 2545446, "time": 29, "timeSeconds": 1234, "draw": {"start": {"x": 15.099717786283406, "y": 35}, "end": {"x": 45.598206034260286, "y": 0}, "goal": {"x": 53.40453500394345, "y": 96.599297173771}}, "reversedPeriodTime": 25, "reversedPeriodTimeSeconds": 1466, "incidentType": "shot"}, {"player": {"name": "Carlos Arboleda", "firstName": "", "lastName": "", "slug": "carlos-arboleda", "shortName": "C. Arboleda", "position": "M", "jerseyNumber": "37", "userCount": 7, "id": 909664}, "isHome": true, "shotType": "miss", "situation": "assisted", "playerCoordinates": {"x": 23.520450887226705, "y": 24.283605828227426, "z": 0}, "bodyPart": "left-foot", "goalMouthLocation": "close-left", "goalMouthCoordinates": {"x": 0, "y": 13.258313732066497, "z": 36.1}, "id": 2545428, "time": 18, "timeSeconds": 1075, "draw": {"start": {"x": 35.31274744836065, "y": 25.14783075835101}, "end": {"x": 23.836703642042437, "y": 0}, "goal": {"x": 61.88242024486836, "y": 8.484827038074592}}, "reversedPeriodTime": 28, "reversedPeriodTimeSeconds": 1625, "incidentType": "shot"}, {"player": {"name": "Diego Armas", "slug": "diego-armas", "shortName": "D. Armas", "position": "M", "jerseyNumber": "8", "userCount": 9, "id": 925605}, "isHome": true, "shotType": "save", "situation": "free-kick", "playerCoordinates": {"x": 24, "y": 32.36924490716545, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-left", "goalMouthCoordinates": {"x": 0, "y": 70.82719018855545, "z": 2.5}, "blockCoordinates": {"x": 1.2085034988208614, "y": 59.413835293576895, "z": 0}, "id": 2545421, "time": 22, "timeSeconds": 928, "draw": {"start": {"x": 9.286924190430703, "y": 24}, "block": {"x": 95.16910414797395, "y": 0.38924679429352227}, "end": {"x": 38.650053913052716, "y": 0}, "goal": {"x": 79.0983147554528, "y": 65.15913826383473}}, "reversedPeriodTime": 30, "reversedPeriodTimeSeconds": 1772, "incidentType": "shot"}, {"player": {"name": "Rodrigo Ruiz D\u00edaz", "slug": "rodrigo-ruiz-diaz", "shortName": "R. Ruiz D\u00edaz", "position": "F", "jerseyNumber": "9", "userCount": 25, "id": 877519}, "isHome": true, "shotType": "save", "situation": "assisted", "playerCoordinates": {"x": 2.2470636121433554, "y": 17.725480605417857, "z": 0}, "bodyPart": "head", "goalMouthLocation": "low-centre", "goalMouthCoordinates": {"x": 0, "y": 50, "z": 13.9}, "blockCoordinates": {"x": 2.5708248373857123, "y": 2.1592887992917085, "z": 0}, "id": 2545395, "time": 11, "timeSeconds": 602, "draw": {"start": {"x": 74.85150937528215, "y": 10.657711428155432}, "block": {"x": 30.121003204992036, "y": 2.4829779476894536}, "end": {"x": 50, "y": 0}, "goal": {"x": 50, "y": 100}}, "reversedPeriodTime": 35, "reversedPeriodTimeSeconds": 2098, "incidentType": "shot"}, {"player": {"name": "Luis Gustavino", "firstName": "Luis Gustavino", "lastName": "", "slug": "luis-gustavino", "shortName": "L. Gustavino", "position": "D", "jerseyNumber": "16", "userCount": 3, "id": 1495656}, "isHome": false, "shotType": "miss", "situation": "corner", "playerCoordinates": {"x": 3.72665840227784, "y": 26.57233747071143, "z": 0}, "bodyPart": "head", "goalMouthLocation": "high", "goalMouthCoordinates": {"x": 0, "y": 46.31383942174749, "z": 73.6}, "id": 2545394, "time": 7, "timeSeconds": 548, "draw": {"start": {"x": 41.702251801038216, "y": 3.0638979789542535}, "end": {"x": 8.830743518765274, "y": 0}, "goal": {"x": 82.89680110919015, "y": 23.560709789808264}}, "reversedPeriodTime": 36, "reversedPeriodTimeSeconds": 2152, "incidentType": "shot"}, {"player": {"name": "Luis Gustavino", "firstName": "Luis Gustavino", "lastName": "", "slug": "luis-gustavino", "shortName": "L. Gustavino", "position": "D", "jerseyNumber": "16", "userCount": 3, "id": 1495656}, "isHome": true, "shotType": "block", "situation": "assisted", "playerCoordinates": {"x": 15, "y": 70, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "low-left", "goalMouthCoordinates": {"x": 0, "y": 58.00847265860812, "z": 19}, "blockCoordinates": {"x": 22.1602855990223, "y": 100, "z": 0}, "id": 2545379, "time": 0, "timeSeconds": 352, "draw": {"start": {"x": 70, "y": 15}, "block": {"x": 39.93107370522196, "y": 7.382961949158457}, "end": {"x": 25.214720041653415, "y": 0}, "goal": {"x": 88.5292767616979, "y": 81}}, "reversedPeriodTime": 40, "reversedPeriodTimeSeconds": 2348, "incidentType": "shot"}, {"player": {"name": "Ariel Almagro", "firstName": "Ariel Almagro", "lastName": "", "slug": "ariel-almagro", "shortName": "A. Almagro", "position": "M", "jerseyNumber": "18", "userCount": 1, "id": 1495599}, "isHome": true, "shotType": "miss", "situation": "corner", "playerCoordinates": {"x": 10.770577187347616, "y": 0.9448085974454656, "z": 0}, "bodyPart": "right-foot", "goalMouthLocation": "close-right", "goalMouthCoordinates": {"x": 0, "y": 59.49342275314438, "z": 13.9}, "id": 2545368, "time": 3, "timeSeconds": 220, "draw": {"start": {"x": 7.03306383349765, "y": 15.656276274651933}, "end": {"x": 62.063789106223275, "y": 0}, "goal": {"x": 72.31095455575459, "y": 40.18794006261072}}, "reversedPeriodTime": 42, "reversedPeriodTimeSeconds": 2480, "incidentType": "shot"}]}
+{
+  "shotmap": [
+    {
+      "player": {
+        "name": "Gastón Poncet",
+        "slug": "gaston-poncet",
+        "shortName": "G. Poncet",
+        "position": "F",
+        "jerseyNumber": "7",
+        "userCount": 15,
+        "id": 873816
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "regular",
+      "playerCoordinates": {
+        "x": 14.9,
+        "y": 71.8,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "close-right",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 41.5,
+        "z": 26.4
+      },
+      "id": 2545736,
+      "time": 90,
+      "addedTime": 6,
+      "timeSeconds": 5726,
+      "draw": {
+        "start": {
+          "x": 71.8,
+          "y": 14.9
+        },
+        "end": {
+          "x": 58.5,
+          "y": 0
+        },
+        "goal": {
+          "x": 58.5,
+          "y": 73.6
+        }
+      },
+      "reversedPeriodTime": 1,
+      "reversedPeriodTimeSeconds": 574,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Carlos Arboleda",
+        "firstName": "",
+        "lastName": "",
+        "slug": "carlos-arboleda",
+        "shortName": "C. Arboleda",
+        "position": "M",
+        "jerseyNumber": "37",
+        "userCount": 7,
+        "id": 909664
+      },
+      "isHome": true,
+      "shotType": "post",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 24.4,
+        "y": 33.9,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "high",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 53.5,
+        "z": 38.6
+      },
+      "id": 2545717,
+      "time": 78,
+      "timeSeconds": 4653,
+      "draw": {
+        "start": {
+          "x": 33.9,
+          "y": 24.4
+        },
+        "end": {
+          "x": 46.5,
+          "y": 0
+        },
+        "goal": {
+          "x": 46.5,
+          "y": 61.4
+        }
+      },
+      "reversedPeriodTime": 13,
+      "reversedPeriodTimeSeconds": 747,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Emmanuel Torres",
+        "firstName": "Emmanuel Torres",
+        "slug": "emmanuel-torres",
+        "shortName": "E. Torres",
+        "position": "M",
+        "jerseyNumber": "70",
+        "userCount": 1,
+        "id": 1805479
+      },
+      "isHome": true,
+      "shotType": "block",
+      "situation": "throw-in-set-piece",
+      "playerCoordinates": {
+        "x": 13.9,
+        "y": 50.7,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 49.8,
+        "z": 19
+      },
+      "blockCoordinates": {
+        "x": 9.3,
+        "y": 50.5,
+        "z": 0
+      },
+      "id": 2545716,
+      "time": 78,
+      "timeSeconds": 4643,
+      "draw": {
+        "start": {
+          "x": 50.7,
+          "y": 13.9
+        },
+        "block": {
+          "x": 50.5,
+          "y": 9.3
+        },
+        "end": {
+          "x": 50.2,
+          "y": 0
+        },
+        "goal": {
+          "x": 50.2,
+          "y": 81
+        }
+      },
+      "reversedPeriodTime": 13,
+      "reversedPeriodTimeSeconds": 757,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Carlos Pérez",
+        "slug": "carlos-perez",
+        "shortName": "C. Pérez",
+        "position": "D",
+        "jerseyNumber": "32",
+        "userCount": 14,
+        "id": 829983
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "corner",
+      "playerCoordinates": {
+        "x": 5.5,
+        "y": 55.5,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "high-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 59.7,
+        "z": 55.6
+      },
+      "id": 2545710,
+      "time": 76,
+      "timeSeconds": 4508,
+      "draw": {
+        "start": {
+          "x": 55.5,
+          "y": 5.5
+        },
+        "end": {
+          "x": 40.3,
+          "y": 0
+        },
+        "goal": {
+          "x": 40.3,
+          "y": 44.4
+        }
+      },
+      "reversedPeriodTime": 15,
+      "reversedPeriodTimeSeconds": 892,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Melvin Diaz",
+        "firstName": "",
+        "lastName": "",
+        "slug": "diaz-melvin",
+        "shortName": "M. Diaz",
+        "position": "M",
+        "jerseyNumber": "19",
+        "userCount": 13,
+        "id": 1069637
+      },
+      "isHome": false,
+      "shotType": "save",
+      "situation": "free-kick",
+      "playerCoordinates": {
+        "x": 13.8,
+        "y": 88.3,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "high-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 50.3,
+        "z": 31.6
+      },
+      "blockCoordinates": {
+        "x": 0.59999999999999,
+        "y": 52.3,
+        "z": 0
+      },
+      "id": 2545683,
+      "time": 69,
+      "timeSeconds": 4134,
+      "draw": {
+        "start": {
+          "x": 88.3,
+          "y": 13.8
+        },
+        "block": {
+          "x": 52.3,
+          "y": 0.59999999999999
+        },
+        "end": {
+          "x": 49.7,
+          "y": 0
+        },
+        "goal": {
+          "x": 49.7,
+          "y": 68.4
+        }
+      },
+      "reversedPeriodTime": 22,
+      "reversedPeriodTimeSeconds": 1266,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Elian Carabali",
+        "slug": "carabali-elian",
+        "shortName": "E. Carabali",
+        "position": "M",
+        "jerseyNumber": "17",
+        "userCount": 7,
+        "id": 1474739
+      },
+      "isHome": false,
+      "shotType": "miss",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 24,
+        "y": 46.3,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "close-high-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 58.2,
+        "z": 59.7
+      },
+      "id": 2545677,
+      "time": 64,
+      "timeSeconds": 3797,
+      "draw": {
+        "start": {
+          "x": 46.3,
+          "y": 24
+        },
+        "end": {
+          "x": 41.8,
+          "y": 0
+        },
+        "goal": {
+          "x": 41.8,
+          "y": 40.3
+        }
+      },
+      "reversedPeriodTime": 27,
+      "reversedPeriodTimeSeconds": 1603,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Elian Carabali",
+        "slug": "carabali-elian",
+        "shortName": "E. Carabali",
+        "position": "M",
+        "jerseyNumber": "17",
+        "userCount": 7,
+        "id": 1474739
+      },
+      "isHome": false,
+      "shotType": "miss",
+      "situation": "set-piece",
+      "playerCoordinates": {
+        "x": 12,
+        "y": 37.6,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 60,
+        "z": 30.6
+      },
+      "id": 2545646,
+      "time": 61,
+      "timeSeconds": 3645,
+      "draw": {
+        "start": {
+          "x": 37.6,
+          "y": 12
+        },
+        "end": {
+          "x": 40,
+          "y": 0
+        },
+        "goal": {
+          "x": 40,
+          "y": 69.4
+        }
+      },
+      "reversedPeriodTime": 30,
+      "reversedPeriodTimeSeconds": 1755,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Gastón Poncet",
+        "slug": "gaston-poncet",
+        "shortName": "G. Poncet",
+        "position": "F",
+        "jerseyNumber": "7",
+        "userCount": 15,
+        "id": 873816
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "regular",
+      "playerCoordinates": {
+        "x": 14.2,
+        "y": 76,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 49.2,
+        "z": 6.3
+      },
+      "blockCoordinates": {
+        "x": 1.5,
+        "y": 53.6,
+        "z": 0
+      },
+      "id": 2545640,
+      "time": 60,
+      "timeSeconds": 3556,
+      "draw": {
+        "start": {
+          "x": 76,
+          "y": 14.2
+        },
+        "block": {
+          "x": 53.6,
+          "y": 1.5
+        },
+        "end": {
+          "x": 50.8,
+          "y": 0
+        },
+        "goal": {
+          "x": 50.8,
+          "y": 93.7
+        }
+      },
+      "reversedPeriodTime": 31,
+      "reversedPeriodTimeSeconds": 1844,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Carlos Arboleda",
+        "firstName": "",
+        "lastName": "",
+        "slug": "carlos-arboleda",
+        "shortName": "C. Arboleda",
+        "position": "M",
+        "jerseyNumber": "37",
+        "userCount": 7,
+        "id": 909664
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "set-piece",
+      "playerCoordinates": {
+        "x": 15.6,
+        "y": 82.4,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "close-right",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 42.4,
+        "z": 18.1
+      },
+      "id": 2545622,
+      "time": 55,
+      "timeSeconds": 3242,
+      "draw": {
+        "start": {
+          "x": 82.4,
+          "y": 15.6
+        },
+        "end": {
+          "x": 57.6,
+          "y": 0
+        },
+        "goal": {
+          "x": 57.6,
+          "y": 81.9
+        }
+      },
+      "reversedPeriodTime": 36,
+      "reversedPeriodTimeSeconds": 2158,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Carlos Arboleda",
+        "firstName": "",
+        "lastName": "",
+        "slug": "carlos-arboleda",
+        "shortName": "C. Arboleda",
+        "position": "M",
+        "jerseyNumber": "37",
+        "userCount": 7,
+        "id": 909664
+      },
+      "isHome": true,
+      "shotType": "block",
+      "situation": "free-kick",
+      "playerCoordinates": {
+        "x": 10,
+        "y": 87.5,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "low-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 52,
+        "z": 19
+      },
+      "blockCoordinates": {
+        "x": 4.6,
+        "y": 66.2,
+        "z": 0
+      },
+      "id": 2545630,
+      "time": 54,
+      "timeSeconds": 3239,
+      "draw": {
+        "start": {
+          "x": 87.5,
+          "y": 10
+        },
+        "block": {
+          "x": 66.2,
+          "y": 4.6
+        },
+        "end": {
+          "x": 48,
+          "y": 0
+        },
+        "goal": {
+          "x": 48,
+          "y": 81
+        }
+      },
+      "reversedPeriodTime": 37,
+      "reversedPeriodTimeSeconds": 2161,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Diego Armas",
+        "slug": "diego-armas",
+        "shortName": "D. Armas",
+        "position": "M",
+        "jerseyNumber": "8",
+        "userCount": 15,
+        "id": 925605
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 22.1,
+        "y": 47.3,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 50,
+        "z": 19
+      },
+      "blockCoordinates": {
+        "x": 2.8,
+        "y": 50.9,
+        "z": 0
+      },
+      "id": 2545611,
+      "time": 51,
+      "timeSeconds": 3041,
+      "draw": {
+        "start": {
+          "x": 47.3,
+          "y": 22.1
+        },
+        "block": {
+          "x": 50.9,
+          "y": 2.8
+        },
+        "end": {
+          "x": 50,
+          "y": 0
+        },
+        "goal": {
+          "x": 50,
+          "y": 81
+        }
+      },
+      "reversedPeriodTime": 40,
+      "reversedPeriodTimeSeconds": 2359,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Gorman Estacio",
+        "slug": "gorman-estacio",
+        "shortName": "G. Estacio",
+        "position": "D",
+        "jerseyNumber": "37",
+        "userCount": 1,
+        "id": 925452
+      },
+      "isHome": false,
+      "shotType": "miss",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 28.1,
+        "y": 36.1,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "close-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 58.2,
+        "z": 15.3
+      },
+      "id": 2545522,
+      "time": 45,
+      "addedTime": 1,
+      "timeSeconds": 2758,
+      "draw": {
+        "start": {
+          "x": 36.1,
+          "y": 28.1
+        },
+        "end": {
+          "x": 41.8,
+          "y": 0
+        },
+        "goal": {
+          "x": 41.8,
+          "y": 84.7
+        }
+      },
+      "reversedPeriodTime": 1,
+      "reversedPeriodTimeSeconds": 2642,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Diego Armas",
+        "slug": "diego-armas",
+        "shortName": "D. Armas",
+        "position": "M",
+        "jerseyNumber": "8",
+        "userCount": 15,
+        "id": 925605
+      },
+      "isHome": true,
+      "shotType": "goal",
+      "goalType": "regular",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 15.3,
+        "y": 59.3,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 54.2,
+        "z": 6.3
+      },
+      "id": 2545509,
+      "time": 42,
+      "timeSeconds": 2492,
+      "draw": {
+        "start": {
+          "x": 59.3,
+          "y": 15.3
+        },
+        "end": {
+          "x": 45.8,
+          "y": 0
+        },
+        "goal": {
+          "x": 45.8,
+          "y": 93.7
+        }
+      },
+      "reversedPeriodTime": 4,
+      "reversedPeriodTimeSeconds": 208,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Juan Jimenez",
+        "slug": "juan-jimenez",
+        "shortName": "J. Jimenez",
+        "position": "M",
+        "jerseyNumber": "21",
+        "userCount": 16,
+        "id": 922048
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 12.9,
+        "y": 43.7,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 50.8,
+        "z": 12
+      },
+      "blockCoordinates": {
+        "x": 2,
+        "y": 49.5,
+        "z": 0
+      },
+      "id": 2545502,
+      "time": 41,
+      "timeSeconds": 2412,
+      "draw": {
+        "start": {
+          "x": 43.7,
+          "y": 12.9
+        },
+        "block": {
+          "x": 49.5,
+          "y": 2
+        },
+        "end": {
+          "x": 49.2,
+          "y": 0
+        },
+        "goal": {
+          "x": 49.2,
+          "y": 88
+        }
+      },
+      "reversedPeriodTime": 5,
+      "reversedPeriodTimeSeconds": 288,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Milton Maciel",
+        "slug": "milton-maciel",
+        "shortName": "M. Maciel",
+        "position": "M",
+        "jerseyNumber": "10",
+        "userCount": 15,
+        "id": 932255
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 28.8,
+        "y": 67.6,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 49.1,
+        "z": 7.6
+      },
+      "blockCoordinates": {
+        "x": 1.6,
+        "y": 51.3,
+        "z": 0
+      },
+      "id": 2545501,
+      "time": 41,
+      "timeSeconds": 2405,
+      "draw": {
+        "start": {
+          "x": 67.6,
+          "y": 28.8
+        },
+        "block": {
+          "x": 51.3,
+          "y": 1.6
+        },
+        "end": {
+          "x": 50.9,
+          "y": 0
+        },
+        "goal": {
+          "x": 50.9,
+          "y": 92.4
+        }
+      },
+      "reversedPeriodTime": 5,
+      "reversedPeriodTimeSeconds": 295,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Edison Carcelen",
+        "firstName": "",
+        "lastName": "",
+        "slug": "edison-carcelen",
+        "shortName": "E. Carcelén",
+        "position": "D",
+        "jerseyNumber": "31",
+        "userCount": 4,
+        "id": 846828
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "corner",
+      "playerCoordinates": {
+        "x": 7,
+        "y": 45.1,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 62.7,
+        "z": 13.9
+      },
+      "id": 2545492,
+      "time": 39,
+      "timeSeconds": 2317,
+      "draw": {
+        "start": {
+          "x": 45.1,
+          "y": 7
+        },
+        "end": {
+          "x": 37.3,
+          "y": 0
+        },
+        "goal": {
+          "x": 37.3,
+          "y": 86.1
+        }
+      },
+      "reversedPeriodTime": 7,
+      "reversedPeriodTimeSeconds": 383,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Milton Maciel",
+        "slug": "milton-maciel",
+        "shortName": "M. Maciel",
+        "position": "M",
+        "jerseyNumber": "10",
+        "userCount": 15,
+        "id": 932255
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "fast-break",
+      "playerCoordinates": {
+        "x": 8.3,
+        "y": 65.1,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "high",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 55.1,
+        "z": 63.9
+      },
+      "id": 2545486,
+      "time": 36,
+      "timeSeconds": 2128,
+      "draw": {
+        "start": {
+          "x": 65.1,
+          "y": 8.3
+        },
+        "end": {
+          "x": 44.9,
+          "y": 0
+        },
+        "goal": {
+          "x": 44.9,
+          "y": 36.1
+        }
+      },
+      "reversedPeriodTime": 10,
+      "reversedPeriodTimeSeconds": 572,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Melvin Diaz",
+        "firstName": "",
+        "lastName": "",
+        "slug": "diaz-melvin",
+        "shortName": "M. Diaz",
+        "position": "M",
+        "jerseyNumber": "19",
+        "userCount": 13,
+        "id": 1069637
+      },
+      "isHome": false,
+      "shotType": "save",
+      "situation": "fast-break",
+      "playerCoordinates": {
+        "x": 15.6,
+        "y": 61.7,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "low-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 51.9,
+        "z": 5.7
+      },
+      "blockCoordinates": {
+        "x": 1.4,
+        "y": 52.7,
+        "z": 0
+      },
+      "id": 2545485,
+      "time": 33,
+      "timeSeconds": 1930,
+      "draw": {
+        "start": {
+          "x": 61.7,
+          "y": 15.6
+        },
+        "block": {
+          "x": 52.7,
+          "y": 1.4
+        },
+        "end": {
+          "x": 48.1,
+          "y": 0
+        },
+        "goal": {
+          "x": 48.1,
+          "y": 94.3
+        }
+      },
+      "reversedPeriodTime": 13,
+      "reversedPeriodTimeSeconds": 770,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Milton Maciel",
+        "slug": "milton-maciel",
+        "shortName": "M. Maciel",
+        "position": "M",
+        "jerseyNumber": "10",
+        "userCount": 15,
+        "id": 932255
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 32,
+        "y": 35.7,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "low-right",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 47.6,
+        "z": 10.8
+      },
+      "blockCoordinates": {
+        "x": 2.2,
+        "y": 49.5,
+        "z": 0
+      },
+      "id": 2545473,
+      "time": 32,
+      "timeSeconds": 1870,
+      "draw": {
+        "start": {
+          "x": 35.7,
+          "y": 32
+        },
+        "block": {
+          "x": 49.5,
+          "y": 2.2
+        },
+        "end": {
+          "x": 52.4,
+          "y": 0
+        },
+        "goal": {
+          "x": 52.4,
+          "y": 89.2
+        }
+      },
+      "reversedPeriodTime": 14,
+      "reversedPeriodTimeSeconds": 830,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Melvin Diaz",
+        "firstName": "",
+        "lastName": "",
+        "slug": "diaz-melvin",
+        "shortName": "M. Diaz",
+        "position": "M",
+        "jerseyNumber": "19",
+        "userCount": 13,
+        "id": 1069637
+      },
+      "isHome": false,
+      "shotType": "save",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 11.8,
+        "y": 74.7,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 50.9,
+        "z": 6.3
+      },
+      "blockCoordinates": {
+        "x": 1,
+        "y": 53.1,
+        "z": 0
+      },
+      "id": 2545468,
+      "time": 29,
+      "timeSeconds": 1728,
+      "draw": {
+        "start": {
+          "x": 74.7,
+          "y": 11.8
+        },
+        "block": {
+          "x": 53.1,
+          "y": 1
+        },
+        "end": {
+          "x": 49.1,
+          "y": 0
+        },
+        "goal": {
+          "x": 49.1,
+          "y": 93.7
+        }
+      },
+      "reversedPeriodTime": 17,
+      "reversedPeriodTimeSeconds": 972,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Diego Armas",
+        "slug": "diego-armas",
+        "shortName": "D. Armas",
+        "position": "M",
+        "jerseyNumber": "8",
+        "userCount": 15,
+        "id": 925605
+      },
+      "isHome": true,
+      "shotType": "block",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 16.5,
+        "y": 44.2,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 50.1,
+        "z": 19
+      },
+      "blockCoordinates": {
+        "x": 11.8,
+        "y": 45.8,
+        "z": 0
+      },
+      "id": 2545467,
+      "time": 29,
+      "timeSeconds": 1695,
+      "draw": {
+        "start": {
+          "x": 44.2,
+          "y": 16.5
+        },
+        "block": {
+          "x": 45.8,
+          "y": 11.8
+        },
+        "end": {
+          "x": 49.9,
+          "y": 0
+        },
+        "goal": {
+          "x": 49.9,
+          "y": 81
+        }
+      },
+      "reversedPeriodTime": 17,
+      "reversedPeriodTimeSeconds": 1005,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Augusto Magoia",
+        "firstName": "Augusto Magoia",
+        "slug": "augusto-magoia",
+        "shortName": "A. Magoia",
+        "jerseyNumber": "9",
+        "userCount": 5,
+        "id": 1651700
+      },
+      "isHome": false,
+      "shotType": "save",
+      "situation": "fast-break",
+      "playerCoordinates": {
+        "x": 24.3,
+        "y": 44.4,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-right",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 46.6,
+        "z": 18.4
+      },
+      "blockCoordinates": {
+        "x": 0.59999999999999,
+        "y": 49.5,
+        "z": 0
+      },
+      "id": 2545466,
+      "time": 25,
+      "timeSeconds": 1467,
+      "draw": {
+        "start": {
+          "x": 44.4,
+          "y": 24.3
+        },
+        "block": {
+          "x": 49.5,
+          "y": 0.59999999999999
+        },
+        "end": {
+          "x": 53.4,
+          "y": 0
+        },
+        "goal": {
+          "x": 53.4,
+          "y": 81.6
+        }
+      },
+      "reversedPeriodTime": 21,
+      "reversedPeriodTimeSeconds": 1233,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Eddie Guevara",
+        "firstName": "",
+        "lastName": "",
+        "slug": "eddie-guevara",
+        "shortName": "E. Guevara",
+        "position": "D",
+        "jerseyNumber": "2",
+        "userCount": 7,
+        "id": 827127
+      },
+      "isHome": true,
+      "shotType": "block",
+      "situation": "corner",
+      "playerCoordinates": {
+        "x": 7.4,
+        "y": 48.2,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "low-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 53.7,
+        "z": 19
+      },
+      "blockCoordinates": {
+        "x": 1.1,
+        "y": 46.6,
+        "z": 0
+      },
+      "id": 2545461,
+      "time": 24,
+      "timeSeconds": 1427,
+      "draw": {
+        "start": {
+          "x": 48.2,
+          "y": 7.4
+        },
+        "block": {
+          "x": 46.6,
+          "y": 1.1
+        },
+        "end": {
+          "x": 46.3,
+          "y": 0
+        },
+        "goal": {
+          "x": 46.3,
+          "y": 81
+        }
+      },
+      "reversedPeriodTime": 22,
+      "reversedPeriodTimeSeconds": 1273,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Milton Maciel",
+        "slug": "milton-maciel",
+        "shortName": "M. Maciel",
+        "position": "M",
+        "jerseyNumber": "10",
+        "userCount": 15,
+        "id": 932255
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 35,
+        "y": 18.9,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "close-high-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 57.3,
+        "z": 41.7
+      },
+      "id": 2545446,
+      "time": 21,
+      "timeSeconds": 1234,
+      "draw": {
+        "start": {
+          "x": 18.9,
+          "y": 35
+        },
+        "end": {
+          "x": 42.7,
+          "y": 0
+        },
+        "goal": {
+          "x": 42.7,
+          "y": 58.3
+        }
+      },
+      "reversedPeriodTime": 25,
+      "reversedPeriodTimeSeconds": 1466,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Carlos Arboleda",
+        "firstName": "",
+        "lastName": "",
+        "slug": "carlos-arboleda",
+        "shortName": "C. Arboleda",
+        "position": "M",
+        "jerseyNumber": "37",
+        "userCount": 7,
+        "id": 909664
+      },
+      "isHome": true,
+      "shotType": "miss",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 15.7,
+        "y": 30.7,
+        "z": 0
+      },
+      "bodyPart": "left-foot",
+      "goalMouthLocation": "close-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 58.2,
+        "z": 36.1
+      },
+      "id": 2545428,
+      "time": 18,
+      "timeSeconds": 1075,
+      "draw": {
+        "start": {
+          "x": 30.7,
+          "y": 15.7
+        },
+        "end": {
+          "x": 41.8,
+          "y": 0
+        },
+        "goal": {
+          "x": 41.8,
+          "y": 63.9
+        }
+      },
+      "reversedPeriodTime": 28,
+      "reversedPeriodTimeSeconds": 1625,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Diego Armas",
+        "slug": "diego-armas",
+        "shortName": "D. Armas",
+        "position": "M",
+        "jerseyNumber": "8",
+        "userCount": 15,
+        "id": 925605
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "free-kick",
+      "playerCoordinates": {
+        "x": 24,
+        "y": 20.9,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 54.5,
+        "z": 2.5
+      },
+      "blockCoordinates": {
+        "x": 1.1,
+        "y": 49.8,
+        "z": 0
+      },
+      "id": 2545421,
+      "time": 16,
+      "timeSeconds": 928,
+      "draw": {
+        "start": {
+          "x": 20.9,
+          "y": 24
+        },
+        "block": {
+          "x": 49.8,
+          "y": 1.1
+        },
+        "end": {
+          "x": 45.5,
+          "y": 0
+        },
+        "goal": {
+          "x": 45.5,
+          "y": 97.5
+        }
+      },
+      "reversedPeriodTime": 30,
+      "reversedPeriodTimeSeconds": 1772,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Rodrigo Ruiz Díaz",
+        "slug": "rodrigo-ruiz-diaz",
+        "shortName": "R. Ruiz Díaz",
+        "position": "F",
+        "jerseyNumber": "9",
+        "userCount": 29,
+        "id": 877519
+      },
+      "isHome": true,
+      "shotType": "save",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 9.9,
+        "y": 46.1,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "low-centre",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 50,
+        "z": 13.9
+      },
+      "blockCoordinates": {
+        "x": 1.6,
+        "y": 50.5,
+        "z": 0
+      },
+      "id": 2545395,
+      "time": 11,
+      "timeSeconds": 602,
+      "draw": {
+        "start": {
+          "x": 46.1,
+          "y": 9.9
+        },
+        "block": {
+          "x": 50.5,
+          "y": 1.6
+        },
+        "end": {
+          "x": 50,
+          "y": 0
+        },
+        "goal": {
+          "x": 50,
+          "y": 86.1
+        }
+      },
+      "reversedPeriodTime": 35,
+      "reversedPeriodTimeSeconds": 2098,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Luis Gustavino",
+        "firstName": "Luis Gustavino",
+        "lastName": "",
+        "slug": "luis-gustavino",
+        "shortName": "L. Gustavino",
+        "position": "D",
+        "jerseyNumber": "16",
+        "userCount": 3,
+        "id": 1495656
+      },
+      "isHome": false,
+      "shotType": "miss",
+      "situation": "corner",
+      "playerCoordinates": {
+        "x": 10.1,
+        "y": 45.5,
+        "z": 0
+      },
+      "bodyPart": "head",
+      "goalMouthLocation": "high",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 54.3,
+        "z": 73.6
+      },
+      "id": 2545394,
+      "time": 10,
+      "timeSeconds": 548,
+      "draw": {
+        "start": {
+          "x": 45.5,
+          "y": 10.1
+        },
+        "end": {
+          "x": 45.7,
+          "y": 0
+        },
+        "goal": {
+          "x": 45.7,
+          "y": 26.4
+        }
+      },
+      "reversedPeriodTime": 36,
+      "reversedPeriodTimeSeconds": 2152,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Luis Gustavino",
+        "firstName": "Luis Gustavino",
+        "lastName": "",
+        "slug": "luis-gustavino",
+        "shortName": "L. Gustavino",
+        "position": "D",
+        "jerseyNumber": "16",
+        "userCount": 3,
+        "id": 1495656
+      },
+      "isHome": false,
+      "shotType": "block",
+      "situation": "assisted",
+      "playerCoordinates": {
+        "x": 15,
+        "y": 70,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "low-left",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 53.1,
+        "z": 19
+      },
+      "blockCoordinates": {
+        "x": 12.8,
+        "y": 66.6,
+        "z": 0
+      },
+      "id": 2545379,
+      "time": 6,
+      "timeSeconds": 352,
+      "draw": {
+        "start": {
+          "x": 70,
+          "y": 15
+        },
+        "block": {
+          "x": 66.6,
+          "y": 12.8
+        },
+        "end": {
+          "x": 46.9,
+          "y": 0
+        },
+        "goal": {
+          "x": 46.9,
+          "y": 81
+        }
+      },
+      "reversedPeriodTime": 40,
+      "reversedPeriodTimeSeconds": 2348,
+      "incidentType": "shot"
+    },
+    {
+      "player": {
+        "name": "Ariel Almagro",
+        "firstName": "Ariel Almagro",
+        "lastName": "",
+        "slug": "ariel-almagro",
+        "shortName": "A. Almagro",
+        "position": "M",
+        "jerseyNumber": "18",
+        "userCount": 1,
+        "id": 1495599
+      },
+      "isHome": false,
+      "shotType": "miss",
+      "situation": "corner",
+      "playerCoordinates": {
+        "x": 15.2,
+        "y": 34.2,
+        "z": 0
+      },
+      "bodyPart": "right-foot",
+      "goalMouthLocation": "close-right",
+      "goalMouthCoordinates": {
+        "x": 0,
+        "y": 42.9,
+        "z": 13.9
+      },
+      "id": 2545368,
+      "time": 4,
+      "timeSeconds": 220,
+      "draw": {
+        "start": {
+          "x": 34.2,
+          "y": 15.2
+        },
+        "end": {
+          "x": 57.1,
+          "y": 0
+        },
+        "goal": {
+          "x": 57.1,
+          "y": 86.1
+        }
+      },
+      "reversedPeriodTime": 42,
+      "reversedPeriodTimeSeconds": 2480,
+      "incidentType": "shot"
+    }
+  ]
+}
