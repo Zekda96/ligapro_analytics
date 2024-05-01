@@ -47,7 +47,7 @@ def read_db(table_name, home, away):
 
 def team_name_to_path(fn):
     """
-    Replace team name with path to logo for plottable
+    Replace team name with path to logo
     """
 
     img_path = './data/logos'
@@ -73,6 +73,31 @@ def team_name_to_path(fn):
 
     fp = os.path.join(img_path, f'{teams[fn]}.png')
     return fp
+
+
+def add_team_logos(ax, home, away):
+    DC_to_FC = ax.transData.transform
+    FC_to_NFC = fig.transFigure.inverted().transform
+    # -- Take data coordinates and transform them to normalized figure coordinates
+    DC_to_NFC = lambda x: FC_to_NFC(DC_to_FC(x))
+
+    for team in [home, away]:
+        ax_size = 0.1
+        y = 0.955
+        if team == home:
+            x = 0.12
+            
+        else:
+            x = 0.88
+
+        image = Image.open(team_name_to_path(team))
+        newax = fig.add_axes(
+            [x-ax_size/2, y-ax_size/2, ax_size, ax_size],
+            anchor='W', zorder=1
+        )
+        newax.imshow(image)
+        newax.axis('off')
+    
 
 
 def order_data(df, team, stat_type):
@@ -539,6 +564,9 @@ if __name__ == "__main__":
     # --------------------------------------- Add Pitch
     pitch = Pitch()
     pitch.draw(ax=ax_pitch)
+
+    # --------------------- Add team logos
+    add_team_logos(ax_title, home, away)
 
     # --------------------- Add shots to Pitch
     add_pitch_shots(pitch, ax_pitch, home, away)
