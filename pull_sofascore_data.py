@@ -42,6 +42,7 @@ def parse_json_lineups(lineups_data, home, away, week):
         for player in team:
             stats = player['statistics']
             stats['player'] = player['player']['name']
+            stats['position'] = player['position']
             stats['team'] = team_names[0] if is_home else team_names[1]
             stats['home'] = team_names[0]
             stats['away'] = team_names[1]
@@ -57,18 +58,19 @@ def parse_json_lineups(lineups_data, home, away, week):
     df = df.rename(
         columns=
         {
-            'onTargetScoringAttempt': 'ShotOnTarget',
-            'shotOffTarget': 'ShotOffTarget'
+            'onTargetScoringAttempt': 'ShotsOnTarget',
+            'blockedScoringAttempt': 'ShotsBlocked',
+            'shotOffTarget': 'ShotsOffTarget'
         }
     )
 
     # New metrics
-    df['TotalShots'] = (df['ShotOffTarget'] + df['ShotOnTarget'])
+    df['TotalShots'] = (df['ShotsOffTarget'] + df['ShotsOnTarget'] + df['ShotsBlocked'])
 
     # p90 metrics
     df['accuratePass_p90'] = (df['accuratePass'] / df['minutesPlayed']) * 90
     df['TotalShots_p90'] = (df['TotalShots'] / df['minutesPlayed']) * 90
-    df['ShotOnTarget_p90'] = (df['ShotOnTarget'] / df['minutesPlayed']) * 90
+    df['ShotsOnTarget_p90'] = (df['ShotsOnTarget'] / df['minutesPlayed']) * 90
 
     # Replace NaNs with 0
     df = df.fillna(0)
@@ -76,8 +78,8 @@ def parse_json_lineups(lineups_data, home, away, week):
     df.loc[:, 'ratingVersions'] = df['ratingVersions'].astype('string')
 
     ####
-    # df_lineups = df[['team', 'TotalShots', 'ShotOnTarget',
-    #                  'goals', 'ShotOffTarget', 'blockedScoringAttempt']].groupby('team').sum()
+    # df_lineups = df[['team', 'TotalShots', 'ShotsOnTarget',
+    #                  'goals', 'ShotsOffTarget', 'blockedScoringAttempt']].groupby('team').sum()
 
     return df
 
