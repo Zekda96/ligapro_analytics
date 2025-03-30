@@ -84,11 +84,9 @@ def add_team_logos(ax, home, away):
     for team in [home, away]:
         ax_size = 0.1
         y = 0.955
-        if team == home:
-            x = 0.12
-            
-        else:
-            x = 0.88
+        x = 0.105
+        if team == away:
+            x = 1 - x
 
         image = Image.open(team_name_to_path(team))
         newax = fig.add_axes(
@@ -154,7 +152,7 @@ def order_data(df, team, stat_type):
     return df
 
 
-def add_labels(fig, home_team, away_team):
+def convert_team_name(name):
     teams = {'liga': 'LDU',
              'emelec': 'Emelec',
              'barcelona': 'Barcelona',
@@ -172,17 +170,25 @@ def add_labels(fig, home_team, away_team):
              'libertad': 'Libertad',
              'tecnico': 'Tecnico U.'
              }
+    
+    return teams[name]
+
+
+def add_labels(fig, home_team, away_team, mw):
+
+    home = convert_team_name(home_team)
+    away = convert_team_name(away_team)
 
     # ------------------- Labels
     ax_title.text(x=0.5, y=0.9,
-                  s=f'{teams[home_team]} vs. {teams[away_team]}',
+                  s=f'{home} vs. {away}',
                   size=40,
                   ha='center',
-                  va='top'
+                  va='top',
                   )
 
     ax_title.text(x=0.5, y=0.5,
-                  s=f'Reporte de Partido - Liga Pro 2024',
+                  s=f'Reporte de Partido - Liga Pro 2024 - Fecha {mw}',
                   size=25,
                   ha='center',
                   va='top'
@@ -369,6 +375,110 @@ def add_pitch_shots(ax_pitch, ax, home_team, away_team):
                              )
 
 
+def add_pitch_labels(ax_pitch, ax, home, away):
+
+    ty = 80  # Total y
+    tx = 120 # Total x
+
+    # Legend labels
+    y = 1.025
+    # ------------- Remates
+    x = 0.05
+    xdiff = 0.1
+
+    ax_pitch.annotate(
+        text='Remate',
+        xy=(x*tx, y*ty),
+        ha='left',
+        va='center',
+        ax=ax,
+        )
+    
+    ax_pitch.scatter(
+        (x+xdiff)*tx,
+        y*ty,
+        facecolor='white',
+        edgecolor='red',
+        ax=ax,
+    )
+
+    # ------------- Al arco
+    x += 0.13
+    xdiff = 0.09
+
+    ax_pitch.annotate(
+        text='Al arco',
+        xy=(x*tx, y*ty),
+        ha='left',
+        va='center',
+        ax=ax,
+        )
+    
+    ax_pitch.scatter(
+        (x+xdiff)*tx,
+        y*ty,
+        facecolor='red',
+        edgecolor='red',
+        ax=ax,
+    )
+
+    # ------------- Goles
+    x += 0.12
+    xdiff = 0.055
+
+    ax_pitch.annotate(
+        text='Gol',
+        xy=(x*tx, y*ty),
+        ha='left',
+        va='center',
+        ax=ax,
+        )
+    
+    ax_pitch.scatter(
+        (x+xdiff)*tx,
+        y*ty,
+        marker='football',
+        s=rcParams['lines.markersize'] ** 2.5,
+        ax=ax,
+    )
+
+
+    # ------ Home team
+    home = convert_team_name(home)
+    away = convert_team_name(away)
+
+    x = 0.02
+    y = 0.05
+
+    alpha = 0.4
+    size = 14
+
+
+
+    ax_pitch.annotate(
+        text=f'{home} - Remates',
+        xy=(x*tx, y*ty),
+        ha='left',
+        va='center',
+        size=size,
+        ax=ax,
+        alpha=alpha,
+        )
+
+    x = 1 - x
+    ax_pitch.annotate(
+        text=f'{(away)} - Remates',
+        xy=(x*tx, y*ty),
+        size=size,
+        ha='right',
+        va='center',
+        ax=ax,
+        alpha=alpha,
+        )
+
+    return 1
+
+
 def get_col_defs(stat_type):
     cmap_test = LinearSegmentedColormap.from_list(
         # name="bugw", colors=["#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"], N=256
@@ -528,6 +638,8 @@ if __name__ == "__main__":
 
     df = read_db('lineups', home, away)
 
+    mw = df['matchweek'].unique()[0]
+
 
     tables_dfs = {'pass': {'home': order_data(df, home, 'pass'),
                            'away': order_data(df, away, 'pass')
@@ -571,13 +683,16 @@ if __name__ == "__main__":
     # --------------------- Add shots to Pitch
     add_pitch_shots(pitch, ax_pitch, home, away)
 
+    # --------------------- Add Pitch labels
+    add_pitch_labels(pitch, ax_pitch, home, away)
+
     # --------------------- Add team statistics to Pitch
     add_pitch_stats(ax_pitch, home, away)
 
     # ---------------------- Add Tables with player data
     add_tables(tables_dfs, {'home': axs_home, 'away': axs_away})
 
-    add_labels(fig, home, away)
+    add_labels(fig, home, away, mw)
 
     fig.savefig(f"images/match_report.png",
                 # bbox_inches='tight',
